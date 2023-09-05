@@ -1,0 +1,40 @@
+.favouritesFlexContainer {
+    position: absolute;
+    width: 80%;
+    margin: 0% 10%;
+    top: 300px;
+    text-align: center;
+}
+
+.favouritesLandscapeTitle {
+    font-size: 40px;
+    margin: 0;
+    color: white;
+}
+
+.favouritesContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 50px 0px;
+    border-top: 1px solid #ededed;
+}
+
+.favouritesTitle {
+    margin: 50px 0px;
+    font-size: 30px;
+}
+
+.favouriteCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.favouritesEmpty {
+    margin: 5rem 0rem;
+    font-size: 20px
+}

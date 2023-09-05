@@ -1,0 +1,94 @@
+.reachUsMainContainer {
+    margin-bottom: 50px;
+    flex: 1;
+    margin-top: 84px;
+}
+
+.reachUsContainer {
+    background-image: url("../../../public/images/urbanDarken.png");
+    background-size: cover;
+    background-position: center;
+    min-height: 1000px;
+}
+
+.reachUsContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reachUsForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 150px;
+}
+
+.reachUsTitle {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.reachUsInputRow {
+    margin: 20px 0px;
+}
+
+.reachUsInputIcon {
+    color: white;
+}
+
+/* .MuiInputBase-input {
+    color: white !important;
+} */
+
+.reachUsButton {
+    font-size: 20px;
+    width: 35%;
+    margin: 30px 0px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    color: rgb(0, 94, 94);
+}
+
+.reachUsButtonCanHover {
+    cursor: pointer;
+}
+
+.reachUsButtonCanHover:hover {
+    animation: reachUsButtonHover 200ms ease-in-out;
+    background-color: rgb(0, 94, 94);
+    color: white;
+}
+
+@keyframes reachUsButtonHover {
+    0% {
+        background-color: white;
+        color: rgb(0, 94, 94);
+    }
+    100% {
+        background-color: rgb(0, 94, 94);
+        color: white;
+    }
+}
+
+.reachUsInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.badgesContainer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+@media screen and (max-width: 1445px) {
+    .badgesContainer {
+        flex-wrap: wrap;
+    }
+}

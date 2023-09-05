@@ -1,0 +1,116 @@
+.adminPanelContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.adminForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    margin: 200px 0px;
+    min-height: 500px;
+    justify-content: center;
+    background-color: teal;
+    border-radius: 5px;
+    box-shadow: 0px 0px 100px 1px whitesmoke;
+}
+
+.adminFormIcon {
+    margin: 50px;
+    font-size: 60px !important;
+}
+
+.dropzoneArea {
+    width: 80% !important;
+    margin: 50px 0px;
+}
+
+.datePicker {
+    margin: 10px 0px !important;
+}
+
+.googlePlacesAutocomplete {
+    width: 70% !important;
+    margin-top: 8px;
+}
+
+.css-13cymwt-control {
+    background-color: transparent !important;
+    border-color: rgba(0, 0, 0, 0.23) !important;
+}
+
+.createEstateButton {
+    font-size: 20px;
+    padding: 20px;
+    width: 30%;
+    margin-bottom: 20px;
+    border: 0px;
+    border-radius: 30px;
+    color: teal;
+    cursor: pointer;
+}
+
+.createEstateButton:hover {
+    background-color: rgb(0, 178, 178);
+    color: white;
+}
+
+.inputPrice {
+    width: 69%;
+}
+
+.categoriesSelectContainer {
+    width: 70%;
+    margin-top: 10px;
+}
+
+.categoriesSelect {
+    width: 100%;
+}
+
+.typeField {
+    margin-top: 8px;
+}
+
+@media screen and (max-width: 1200px) {
+    .inputPrice {
+        width: 67%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .adminForm {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .adminForm {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .adminForm {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .inputPrice {
+        width: 74%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .adminForm {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .inputPrice {
+        width: 80%;
+    }
+}

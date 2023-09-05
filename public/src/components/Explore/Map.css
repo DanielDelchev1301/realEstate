@@ -1,0 +1,91 @@
+.mapContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 500px;
+    margin: 100px 0px;
+    border-top: 1px solid #ebebeb;
+}
+
+.mapTitle {
+    font-size: 30px;
+    margin: 50px;
+}
+
+.googleMap {
+    width: 100%;
+    height: 500px;
+}
+
+.pinIcon {
+    font-size: 40px !important;
+}
+
+.pinText {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.previewCard {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+    height: 200px;
+    border: 1px solid teal;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.previewImageCard {
+    width: 100%;
+    height: 100px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.previewCardContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.previewCardButtonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.previewCardButton {
+    width: 100%;
+    font-size: 12px;
+    padding: 15px;
+    border-radius: 0px 0px 5px 5px;
+    background-color: teal;
+    border: none;
+    border-top: 1px solid teal;
+    color: white;
+    cursor: pointer;
+}
+
+.previewCardButton:hover {
+    animation: previewCardButtonHover 200ms ease-in-out;
+    background-color: white;
+    color: teal;
+}
+
+@keyframes previewCardButtonHover {
+    0% {
+        background-color: teal;
+        color: white;
+    }
+    100% {
+        background-color: white;
+        color: teal;
+    }
+}

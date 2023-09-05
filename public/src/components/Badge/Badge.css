@@ -1,0 +1,29 @@
+.badgeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 130px 30px;
+}
+
+.badgeImg {
+    width: 50%;
+    border-radius: 50%;
+}
+
+.badgeInfoContainer {
+    display: flex;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    border-radius: 0px 0px 0px 10px;
+    flex-direction: column;
+    opacity: 0.3;
+}
+
+.badgeInfoContainer:hover {
+    opacity: 1;
+}
+
+.badgePhoneInfo, .badgeDescriptionInfo, .badgeNameInfo {
+    margin: 1rem 1rem;
+    color: white;
+}

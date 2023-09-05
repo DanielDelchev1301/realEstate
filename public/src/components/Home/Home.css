@@ -1,0 +1,169 @@
+.homeContainer {
+    flex: 5;
+    margin-top: 84px;
+}
+
+.landscapeImage {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.homeFlexContainer {
+    position: absolute;
+    width: 80%;
+    margin: 0% 10%;
+    top: 400px;
+    text-align: center;
+}
+
+.homeLandscapeTitle {
+    font-size: 60px;
+    margin: 0;
+    color: white;
+}
+
+.homeLandscapeDescription {
+    margin: 0;
+    font-size: 30px;
+    color: white;
+}
+
+@media screen and (max-width: 900px) {
+    .homeLandscapeTitle {
+        font-size: 40px;
+    }
+    .homeLandscapeDescription {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .homeLandscapeTitle {
+        font-size: 30px;
+    }
+    .homeLandscapeDescription {
+        font-size: 15px;
+    }
+}
+
+.exploreContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 50px 0px;
+    border-top: 1px solid #ededed;
+}
+
+.homeExploreTitle {
+    margin: 50px 0px;
+    font-size: 30px;
+}
+
+.exploreCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+@media screen and (max-width: 900px) {
+    .exploreCards {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.exploreButton {
+    width: 150px;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid teal;
+    background-color: white;
+    color: teal;
+    cursor: pointer;
+}
+
+.exploreButton:hover {
+    animation: buttonHover 200ms ease-in-out;
+    background-color: teal;
+    color: white;
+}
+
+@keyframes buttonHover {
+    0% {
+        background-color: white;
+        color: teal;
+    }
+    100% {
+        background-color: teal;
+        color: white;
+    }
+}
+
+.mostSoldContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5%;
+    border-top: 1px solid #e8e8e8;
+}
+
+.titleMostContainer {
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+.textMostContainer {
+    font-size: 20px;
+}
+
+.mostContent {
+    display: flex;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.mostContentText {
+    width: 50%;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mostContentText h1 {
+    font-size: 25px;
+}
+
+.mostContentText p {
+    width: 80%;
+    font-size: 20px;
+}
+
+.mostContentImage {
+    width: 50%;
+}
+
+@media screen and (max-width: 900px) {
+    .mostContent {
+        flex-direction: column;
+    }
+    .mostContentText {
+        width: 100%;
+        height: 370px;
+    }
+    .mostContentImage {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .mostContentText {
+        height: 270px;
+    }
+}
