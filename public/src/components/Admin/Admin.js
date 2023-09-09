@@ -3,7 +3,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LockIcon from '@mui/icons-material/Lock';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import './Admin.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AdminPanel from './AdminPanel';
 
 function Admin() {
@@ -12,6 +12,10 @@ function Admin() {
     const [open, setOpen] = useState(false);
 
     const isAdmin = JSON.parse(window.localStorage.getItem('user'))?.admin;
+
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }, []);
 
     const handleLoginButton = () => {
         if (username === 'admin' && password === 'admin') {

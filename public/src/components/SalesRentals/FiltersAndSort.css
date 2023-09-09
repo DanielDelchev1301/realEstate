@@ -1,0 +1,134 @@
+.filtersMainContainer {
+    display: flex;
+    align-items: start;
+    width: 85%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.filtersContainer {
+    flex: 10;
+}
+
+.filtersContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.filterContent {
+    display: flex;
+    align-items: center;
+}
+
+.filterTitle {
+    margin: 1rem;
+}
+
+.filtersApplyButton {
+    width: 30%;
+    margin: 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(25, 118, 210);
+    color: rgb(25, 118, 210);
+    background-color: white;
+    cursor: pointer;
+}
+
+.filtersApplyButton:hover {
+    animation: filterHoverApplyButton 200ms ease-in-out;
+    background-color: rgb(25, 118, 210);
+    color: white;
+}
+
+.filtersClearButton {
+    width: 30%;
+    margin: 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(210, 25, 62);
+    color: rgb(210, 25, 62);
+    background-color: white;
+    cursor: pointer;
+}
+
+.filtersClearButton:hover {
+    animation: filterHoverClearButton 200ms ease-in-out;
+    background-color: rgb(210, 25, 62);
+    color: white;
+}
+
+.hideFilters {
+    display: none;
+}
+
+.spinner {
+    position: fixed;
+}
+
+.hideSpinner {
+    display: none;
+}
+
+.sortContainer {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+}
+
+.sortIcon, .filterIcon {
+    font-size: 40px !important;
+}
+
+.sortIcon:hover, .filterIcon:hover {
+    cursor: pointer;
+    background-color: rgb(243, 243, 243);
+    border-radius: 50%;
+}
+
+.selectedMenuItem {
+    color: green !important;
+    background-color: #e5ffe5 !important;
+}
+
+.selectedMenuItem:hover {
+    background-color: #daffda !important;
+}
+
+.categoriesSelectFilter {
+    width: 100%;
+}
+
+@keyframes filterHoverApplyButton {
+    0% {
+        background-color: white;
+        color: rgb(25, 118, 210);
+    }
+    100% {
+        background-color: rgb(25, 118, 210);
+        color: white;
+    }
+}
+
+@keyframes filterHoverClearButton {
+    0% {
+        background-color: white;
+        color: rgb(210, 25, 62);
+    }
+    100% {
+        background-color: rgb(210, 25, 62);
+        color: white;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .filtersApplyButton, .filtersClearButton {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .filtersApplyButton, .filtersClearButton {
+        width: 80%;
+    }
+}

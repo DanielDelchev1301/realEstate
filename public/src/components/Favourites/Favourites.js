@@ -2,14 +2,19 @@ import { useEffect, useState } from 'react';
 import './Favourites.css';
 import { getPropertiesById } from '../../service/propertyService';
 import Card from '../Card/Card';
+import Spinner from '../Spinner/Spinner';
 
 function Favourites() {
     const [favourites, setFavourites] = useState(JSON.parse(window.localStorage.getItem('favourites')) || {});
     const [favouritesList, setFavouritesList] = useState([]);
+    const [openSpinner, setOpenSpinner] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo({top: 150, behavior: 'smooth'});
+    }, []);
 
     useEffect(() => {
         fetch();
-        console.log('fetch');
     }, [favourites]);
 
     const fetch = async () => {
@@ -21,11 +26,14 @@ function Favourites() {
         }
 
         if (favList.length) {
+            setOpenSpinner(true);
             try {
                 const properties = await getPropertiesById(favList);
                 setFavouritesList(properties.data);
+                setOpenSpinner(false);
             } catch (error) {
                 console.error(error);
+                setOpenSpinner(false);
             }
         } else {
             setFavouritesList([]);
@@ -36,11 +44,12 @@ function Favourites() {
             <div className="landscapeImageContainer">
                 <img src="images/urbanDarken.png" alt="" className="landscapeImage" />
                 <div className="favouritesFlexContainer">
-                    <h2 className="favouritesLandscapeTitle">Search Thru Your Favourite Properties</h2>
+                    <h2 className="favouritesLandscapeTitle">Search Through Your Favourite Properties</h2>
                 </div>
             </div>
             <div className="favouritesContainer">
                 <h3 className="favouritesTitle colorText">Favourites</h3>
+                <Spinner open={openSpinner}/>
                 {favouritesList.length 
                     ?   <div className="favouriteCards">
                             {favouritesList.map(property => 

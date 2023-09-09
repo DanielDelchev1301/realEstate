@@ -1,5 +1,12 @@
 import express from 'express';
-import { deleteProperty, editProperty, getAllProperties, getPropertiesById, getPropertyById } from '../services/propertyService.js';
+import { 
+    deleteProperty,
+    editProperty, 
+    getAllProperties, 
+    getAllPropertiesByType, 
+    getPropertiesById, 
+    getPropertyById,
+} from '../services/propertyService.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -47,6 +54,16 @@ router.delete('/delete/:id', async (req, res) => {
     try {
         const property = await deleteProperty(req.params.id);
         res.status(200).json(property);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({message: error.message});
+    }
+});
+
+router.get('/type/:type', async (req, res) => {
+    try {
+        const properties = await getAllPropertiesByType(req.params.type);
+        res.status(200).json(properties);
     } catch (error) {
         console.error(error);
         res.status(400).json({message: error.message});

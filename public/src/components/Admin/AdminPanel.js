@@ -15,10 +15,11 @@ import { DropzoneArea } from 'material-ui-dropzone';
 import { Autocomplete, InputLabel, MenuItem, Select, Switch, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { createProperty } from '../../service/adminService';
-import { initialPropertyInfo, categoriesInfo, typeOptions, appendPropertyInfo } from './adminConstantsAndHelperFunctions.js';
+import { initialPropertyInfo, categoriesInfo, typeOptions, appendPropertyInfo, isButtonDisabled } from './adminConstantsAndHelperFunctions.js';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 import { GOOGLE_MAP_API_KEY } from '../../constants/constants';
+import Spinner from '../Spinner/Spinner';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -27,6 +28,11 @@ function AdminPanel() {
     const [_formData, setFormData] = useState({});
     const [propertyInfo, setPropertyInfo] = useState(initialPropertyInfo);
     const [googleValue, setGoogleValue] = useState(null);
+    const [openSpinner, setOpenSpinner] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }, []);
 
     useEffect(() => {
         if (googleValue && googleValue.value && googleValue.value['place_id']) {
@@ -60,14 +66,19 @@ function AdminPanel() {
     }
 
     const handleCreateProperty = async () => {
+        setOpenSpinner(true);
         try {
-            const formData = appendPropertyInfo(_formData, propertyInfo);
+            let _propertyInfo = {...propertyInfo};
+            propertyInfo.price.currency ? _propertyInfo.price.numberInBGN = Number(propertyInfo.price.number) * 1.95583 : _propertyInfo.price.numberInBGN = propertyInfo.price.number;
+            const formData = appendPropertyInfo(_formData, _propertyInfo);
             const property = await createProperty(formData);
             setPropertyInfo(initialPropertyInfo);
             setFormData({});
-            window.location.replace(`/properties/details/${property._id}`);
+            setOpenSpinner(false);
+            window.location.replace(`/properties/details/${property.data._id}`);
         } catch (error) {
             console.error(error);
+            setOpenSpinner(false);
         }
     }
 
@@ -84,6 +95,7 @@ function AdminPanel() {
         <div className="adminPanelContainer">
             <div className="adminForm">
                 <AddBusinessIcon className="adminFormIcon"/>
+                <Spinner open={openSpinner}/>
                 <div className="inputRow">
                     <DriveFileRenameOutlineIcon className="inputIcon"/>
                     <TextField 
@@ -255,7 +267,11 @@ function AdminPanel() {
                     showPreviews={true}
                     showPreviewsInDropzone={false}
                 />
-                <button className="createEstateButton" onClick={handleCreateProperty}>Create</button>
+                <button
+                    disabled={isButtonDisabled(propertyInfo)}
+                    className={`createEstateButton ${isButtonDisabled(propertyInfo) ? 'disabledButton' : ''}`}
+                    onClick={handleCreateProperty}
+                >Create</button>
             </div>
         </div>
     );

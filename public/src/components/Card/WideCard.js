@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import './Card.css'
+import './WideCard.css'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
 
-function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
+function WideCard({propertyInfo, favourites = {}, setFavourites, rerender}) {
     const [isFavourite, setIsFavourite] = useState(favourites[propertyInfo._id]);
 
     const getDescription = (description) => {
@@ -23,13 +23,13 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
     };
 
     return(
-        <div className="exploreCard">
-            <Carousel className="exploreCardCarousel" interval={10000}>
+        <div className="exploreWideCard">
+            <Carousel className="wideCardCarousel" interval={10000}>
                 {propertyInfo && propertyInfo.images.map(image => (
-                    <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="exploreCardImage" />
+                    <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="wideCardCarouselImage" />
                 ))}
             </Carousel>
-            <div className="exploreCardInfo">
+            <div className="exploreWideCardInfo">
                 <div className="exploreCardHead">
                     {isFavourite 
                         ? <FavoriteIcon className="favIcon" onClick={() => handleClickFav(false, propertyInfo._id)}/>
@@ -37,16 +37,19 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
                     }
                     <h3 className="exploreCardTitle colorText">{propertyInfo.title}</h3>
                 </div>
-                <div>
-                    <p className="exploreCardDescription colorText">{getDescription(propertyInfo.description)}</p>
-                    <p className="exploreCardPrice">&#128178;: {`${propertyInfo.price.number} ${propertyInfo.price.currency ? 'EUR' : 'BGN'}`}</p>
-                    <Link to={`/properties/details/${propertyInfo._id}`} className="exploreCardButtonContainer">
-                        <button className="exploreCardButton" onClick={() => rerender && rerender()}>Details</button>
-                    </Link>
+                <div className="wideCardCategories">
+                    {propertyInfo.categories.map((category, index) => (
+                        <p key={category + '&&&' + index} className="wideCardCategory">{category}</p>
+                    ))}
                 </div>
+                <p className="exploreCardDescription colorText">{getDescription(propertyInfo.description)}</p>
+                <p className="exploreCardPrice">&#128178;: {`${propertyInfo.price.number} ${propertyInfo.price.currency ? 'EUR' : 'BGN'}`}</p>
+                <Link to={`/properties/details/${propertyInfo._id}`} className="exploreCardButtonContainer">
+                    <button className="exploreWideCardButton" onClick={() => rerender && rerender()}>Details</button>
+                </Link>
             </div>
         </div>
     );
 }
 
-export default Card;
+export default WideCard;

@@ -14,11 +14,27 @@ export const initialPropertyInfo = {
     date: Date.now(),
     price: {
         number: '',
+        numberInBGN: '',
         currency: 0 // 0=BGN, 1=EUR
     },
     categories: [],
     type: '',
     images: []
+};
+
+export const isButtonDisabled = (propertyInfo) => {
+    return !(propertyInfo.title
+        && propertyInfo.description
+        && propertyInfo.ownerName
+        && propertyInfo.ownerPhoneNumber
+        && propertyInfo.squareMeters
+        && propertyInfo.rooms
+        && propertyInfo.builtIn
+        && propertyInfo.addressInfo.address
+        && propertyInfo.price.number
+        && propertyInfo.categories.length
+        && propertyInfo.type
+        && propertyInfo.images.length);
 };
 
 export const appendPropertyInfo = (formData, propertyInfo) => {

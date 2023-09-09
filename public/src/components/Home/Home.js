@@ -5,21 +5,27 @@ import Map from '../Explore/Map';
 import { useEffect, useState } from 'react';
 import { getAllProperties } from '../../service/propertyService.js';
 import { CATEGORIES_OBJECT } from '../../constants/constants';
+import Spinner from '../Spinner/Spinner';
 
 function Home() {
     const [propertiesList, setPropertiesList] = useState([]);
     const [favourites, setFavourites] = useState(JSON.parse(window.localStorage.getItem('favourites')) || {});
+    const [openSpinner, setOpenSpinner] = useState(false);
 
     useEffect(() => {
         fetch();
     }, []);
 
     const fetch = async () => {
+        setOpenSpinner(true);
         try {
             const properties = await getAllProperties();
             setPropertiesList(properties.data);
+            setOpenSpinner(false);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         } catch (error) {
             console.error(error);
+            setOpenSpinner(false);
         }
     };
 
@@ -32,6 +38,7 @@ function Home() {
                     <p className="homeLandscapeDescription">Helping Thousands Of Renters To Find Their Perfect Fit.</p>
                 </div>
             </div>
+            <Spinner open={openSpinner}/>
             <div className="exploreContainer">
                 <h2 className="homeExploreTitle colorText">Explore Exclusive Offers</h2>
                 <div className="exploreCards">
@@ -53,7 +60,7 @@ function Home() {
                         <Card key={property._id} propertyInfo={property} favourites={favourites} setFavourites={setFavourites}/>
                     )}
                 </div>
-                <Link to="/viewMore">
+                <Link to="/sales">
                     <button className="exploreButton">View More</button>
                 </Link>
             </div>
@@ -67,7 +74,7 @@ function Home() {
                         <Card key={property._id} propertyInfo={property} favourites={favourites} setFavourites={setFavourites}/>
                     )}
                 </div>
-                <Link to="/viewMore">
+                <Link to="/rentals">
                     <button className="exploreButton">View More</button>
                 </Link>
             </div>

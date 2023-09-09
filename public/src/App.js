@@ -8,6 +8,7 @@ import Admin from './components/Admin/Admin';
 import PropertyDetails from './components/PropertyDetails.js/PropertyDetails';
 import ReachUs from './components/ReachUs/ReachUs';
 import Favourites from './components/Favourites/Favourites';
+import SalesRentals from './components/SalesRentals/SalesRentals';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/reachUs" element={<ReachUs />} />
         <Route path="/favourites" element={<Favourites />} />
+        <Route path="/sales" element={<SalesRentals type={'Sale'}/>} />
+        <Route path="/rentals" element={<SalesRentals type={'Rent'}/>} />
         <Route path="/properties/details/:_id" element={<PropertyDetails />}/>
 
       </Routes>

@@ -55,6 +55,10 @@ const propertySchema = new mongoose.Schema({
         currency: {
             type: Number,
             required: [true, 'Currency is required']
+        },
+        numberInBGN: {
+            type: String,
+            required: [true, 'Number in BGN is required']
         }
     },
     categories: {

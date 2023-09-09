@@ -15,6 +15,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Map from '../Explore/Map.js';
 import Card from '../Card/Card.js';
 import { Alert, Collapse, TextField } from '@mui/material';
+import Spinner from '../Spinner/Spinner';
 
 function PropertyDetails() {
     const isAdmin = JSON.parse(window.localStorage.getItem('user'));
@@ -26,11 +27,17 @@ function PropertyDetails() {
     const [isFavourite, setIsFavourite] = useState(favourites && favourites[property && property._id]);
     const [rerender, setRerender] = useState(false);
     const [editMode, setEditMode] = useState(false);
+    const [haveSymbolsForNewLine, setHaveSymbolsForNewLine] = useState(false);
     const [openAlert, setOpenAlert] = useState({
         shouldDelete: false,
         deleted: false,
         edited: false
     });
+    const [openSpinner, setOpenSpinner] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo({top: 200, behavior: 'smooth'});
+    }, []);
 
     useEffect(() => {
         setIsFavourite(favourites[property && property._id]);
@@ -41,14 +48,18 @@ function PropertyDetails() {
     }, [favourites, rerender]);
 
     const fetch = async () => {
+        setOpenSpinner(true);
         try {
             const propertyData = await getPropertyById(window.location.pathname.split('/').pop());
             const properties = await getAllProperties();
             setProperty(propertyData.data);
             setPropertiesList(properties.data);
             setPropertyForEdit(propertyData.data);
+            setHaveSymbolsForNewLine(propertyData.data.description.includes('\r\n'));
+            setOpenSpinner(false);
         } catch (error) {
             console.error(error);
+            setOpenSpinner(false);
         }
     };
 
@@ -73,29 +84,39 @@ function PropertyDetails() {
     };
 
     const handleEdit = async (property) => {
+        setOpenSpinner(true);
         try {
-            const editedProperty = await editProperty(property);
+            let propertyInfo = {...property};
+            property.price.currency ? propertyInfo.price.numberInBGN = Number(property.price.number) * 1.95583 : propertyInfo.price.numberInBGN = property.price.number;
+            const editedProperty = await editProperty(propertyInfo);
             setProperty(editedProperty.data);
             setPropertyForEdit(editedProperty.data);
             setOpenAlert({...openAlert, edited: true});
+            setHaveSymbolsForNewLine(editedProperty.data.description.includes('\r\n'));
             setEditMode(false);
+            setOpenSpinner(false);
         } catch (error) {
             console.error(error);
+            setOpenSpinner(false);
         }
     };
 
     const handleDelete = async (property) => {
+        setOpenSpinner(true);
         try {
             await deleteProperty(property._id);
+            setOpenSpinner(false);
             window.location.replace(`/`);
         } catch (error) {
             console.error(error);
+            setOpenSpinner(false);
         }
     };
 
     return (
         <div className="mainDetailsContainer">
             <h1 className="detailsTitle colorText">Check More Detailed Info About This Property</h1>
+            <Spinner open={openSpinner}/>
             <div className="detailsContainer">
                 <Carousel
                     className="carouselBox"
@@ -262,11 +283,19 @@ function PropertyDetails() {
                                     />
                                 </>
                                 : <>
-                                    <p>{property && property.description}</p>
+                                    {haveSymbolsForNewLine
+                                        ? <pre>{property && property.description}</pre>
+                                        : <p>{property && property.description}</p>
+                                    }
                                 </>
                             }
                         </div>
                     </div>
+                    <a href="tel:0894443846" className="forMoreInformation">
+                        <button>Call Us
+                                <CallIcon />
+                        </button>
+                    </a>
                     {property && 
                         <Map properties={[property]}/>
                     }

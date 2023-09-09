@@ -8,6 +8,7 @@ import { getAllProperties } from "../../service/propertyService";
 import { useEffect, useState } from "react";
 import { sendMail } from "../../service/adminService";
 import Badge from "../Badge/Badge";
+import Spinner from '../Spinner/Spinner';
 
 function ReachUs() {
     const [propertiesList, setPropertiesList] = useState([]);
@@ -19,6 +20,7 @@ function ReachUs() {
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
+    const [openSpinner, setOpenSpinner] = useState(false);
 
     useEffect(() => {
         fetch();
@@ -28,21 +30,24 @@ function ReachUs() {
         try {
             const properties = await getAllProperties();
             setPropertiesList(properties.data);
+            window.scrollTo({top: 100, behavior: 'smooth'});
         } catch (error) {
             console.error(error);
         }
     };
 
     const handleSendMail = async () => {
+        setOpenSpinner(true);
         try {
             const mail = await sendMail({name, email, message});
             setEmail('');
             setName('');
             setMessage('');
             setOpen(true);
-            console.log(mail);
+            setOpenSpinner(false);
         } catch (error) {
             console.error(error);
+            setOpenSpinner(false);
         }
     };
 
@@ -76,10 +81,11 @@ function ReachUs() {
                                 severity="success"
                                 onClose={() => setOpen(false)}
                             >
-                                Already send your message!
+                                Your message was sent successfully!
                             </Alert>
                         </Collapse>
                         <h2 className="reachUsTitle">Write Us</h2>
+                        <Spinner open={openSpinner}/>
                         <div className="inputRow reachUsInputRow">
                             <AlternateEmailIcon className="inputIcon reachUsInputIcon"/>
                             <TextField

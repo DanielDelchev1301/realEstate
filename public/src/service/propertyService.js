@@ -20,3 +20,7 @@ export const editProperty = async (data) => {
 export const deleteProperty = async (id) => {
     return await axios.delete(`properties/delete/${id}`);
 };
+
+export const getAllPropertiesByType = async (type) => {
+    return await axios.get(`properties/type/${type}`);
+};

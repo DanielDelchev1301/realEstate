@@ -23,3 +23,7 @@ export const editProperty = async (propertyInfo) => {
 export const deleteProperty = async (id) => {
     return await Property.findByIdAndDelete(id);
 };
+
+export const getAllPropertiesByType = async (type) => {
+    return await Property.find({type: type});
+};
