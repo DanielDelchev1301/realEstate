@@ -4,6 +4,7 @@ import "./Map.css";
 import GoogleMapReact from 'google-map-react';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { observerMap } from "../../constants/helperFunctions";
 
 const defaultProps = {
     center: {
@@ -17,6 +18,11 @@ function Map({properties}) {
     const [previewCardVisible, setPreviewCardVisible] = useState({});
 
     const isAdmin = JSON.parse(window.localStorage.getItem('user'));
+
+    useEffect(() => {
+        const mapContainer = document.querySelector('.mapContainer');
+        observerMap.observe(mapContainer);
+    });
 
     useEffect(() => {
         const previewCardVisible = {};

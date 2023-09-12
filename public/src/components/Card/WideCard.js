@@ -41,9 +41,11 @@ function WideCard({propertyInfo, favourites = {}, setFavourites, rerender}) {
                     {propertyInfo.categories.map((category, index) => (
                         <p key={category + '&&&' + index} className="wideCardCategory">{category}</p>
                     ))}
+                    <p className="squareMetersWideCard colorText"><strong>{propertyInfo.squareMeters}</strong> m²</p>
+                    <p className="squareMetersWideCard colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number / propertyInfo.squareMeters)}</strong>/m²</p>
                 </div>
                 <p className="exploreCardDescription colorText">{getDescription(propertyInfo.description)}</p>
-                <p className="exploreCardPrice">&#128178;: {`${propertyInfo.price.number} ${propertyInfo.price.currency ? 'EUR' : 'BGN'}`}</p>
+                <p className="exploreCardPrice colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number)}</strong></p>
                 <Link to={`/properties/details/${propertyInfo._id}`} className="exploreCardButtonContainer">
                     <button className="exploreWideCardButton" onClick={() => rerender && rerender()}>Details</button>
                 </Link>

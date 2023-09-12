@@ -21,12 +21,28 @@
     font-size: 60px;
     margin: 0;
     color: white;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: 500ms ease-in-out;
 }
 
 .homeLandscapeDescription {
     margin: 0;
     font-size: 30px;
     color: white;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: 500ms ease-in-out;
+}
+
+.showTitle {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.showDescription {
+    opacity: 1;
+    transform: translateX(0px);
 }
 
 @media screen and (max-width: 900px) {
@@ -107,6 +123,7 @@
 .mostSoldContainer {
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
     margin: 5%;
     border-top: 1px solid #e8e8e8;

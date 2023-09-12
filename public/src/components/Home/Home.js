@@ -6,11 +6,23 @@ import { useEffect, useState } from 'react';
 import { getAllProperties } from '../../service/propertyService.js';
 import { CATEGORIES_OBJECT } from '../../constants/constants';
 import Spinner from '../Spinner/Spinner';
+import { observer, observerDescriptions, observerTitles } from '../../constants/helperFunctions';
 
 function Home() {
     const [propertiesList, setPropertiesList] = useState([]);
     const [favourites, setFavourites] = useState(JSON.parse(window.localStorage.getItem('favourites')) || {});
-    const [openSpinner, setOpenSpinner] = useState(false);
+    const [openSpinner, setOpenSpinner] = useState(false)
+    
+    useEffect(() => {
+        const cardsForIntersection = document.querySelectorAll('.exploreCard');
+        const homeTitle = document.querySelector('.homeLandscapeTitle');
+        const homeDescription = document.querySelector('.homeLandscapeDescription');
+        cardsForIntersection.forEach(card => {
+            observer.observe(card);
+        });
+        observerTitles.observe(homeTitle);
+        observerDescriptions.observe(homeDescription);
+    }, [propertiesList]);
 
     useEffect(() => {
         fetch();

@@ -2,7 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 130px 30px;
+    margin: 50px 30px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: 500ms ease-in-out;
+}
+
+.showBadge {
+    opacity: 1;
+    transform: translateX(0px);
 }
 
 .badgeImg {

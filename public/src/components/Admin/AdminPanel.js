@@ -204,6 +204,7 @@ function AdminPanel() {
                         {...label}
                         color="warning"
                     />
+                    <p className="colorText">{checked ? "EUR" : "BGN"}</p>
                 </div>
                 <div className="inputRow">
                     <BusinessIcon className="inputIcon"/>

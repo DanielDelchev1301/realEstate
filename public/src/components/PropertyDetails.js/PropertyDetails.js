@@ -16,6 +16,7 @@ import Map from '../Explore/Map.js';
 import Card from '../Card/Card.js';
 import { Alert, Collapse, TextField } from '@mui/material';
 import Spinner from '../Spinner/Spinner';
+import { observer } from '../../constants/helperFunctions';
 
 function PropertyDetails() {
     const isAdmin = JSON.parse(window.localStorage.getItem('user'));
@@ -34,6 +35,13 @@ function PropertyDetails() {
         edited: false
     });
     const [openSpinner, setOpenSpinner] = useState(false);
+
+    useEffect(() => {
+        const cardsForIntersection = document.querySelectorAll('.exploreCard');
+        cardsForIntersection.forEach(card => {
+            observer.observe(card);
+        });
+    }, [propertiesList]);
 
     useEffect(() => {
         window.scrollTo({top: 200, behavior: 'smooth'});

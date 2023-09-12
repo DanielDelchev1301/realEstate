@@ -56,7 +56,7 @@
 }
 
 .inputPrice {
-    width: 69%;
+    width: 62%;
 }
 
 .categoriesSelectContainer {
@@ -74,7 +74,7 @@
 
 @media screen and (max-width: 1200px) {
     .inputPrice {
-        width: 67%;
+        width: 65%;
     }
 }
 

@@ -39,7 +39,7 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
                 </div>
                 <div>
                     <p className="exploreCardDescription colorText">{getDescription(propertyInfo.description)}</p>
-                    <p className="exploreCardPrice">&#128178;: {`${propertyInfo.price.number} ${propertyInfo.price.currency ? 'EUR' : 'BGN'}`}</p>
+                    <p className="exploreCardPrice colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number)}</strong></p>
                     <Link to={`/properties/details/${propertyInfo._id}`} className="exploreCardButtonContainer">
                         <button className="exploreCardButton" onClick={() => rerender && rerender()}>Details</button>
                     </Link>

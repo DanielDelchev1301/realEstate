@@ -3,11 +3,19 @@ import './Favourites.css';
 import { getPropertiesById } from '../../service/propertyService';
 import Card from '../Card/Card';
 import Spinner from '../Spinner/Spinner';
+import { observer } from '../../constants/helperFunctions';
 
 function Favourites() {
     const [favourites, setFavourites] = useState(JSON.parse(window.localStorage.getItem('favourites')) || {});
     const [favouritesList, setFavouritesList] = useState([]);
     const [openSpinner, setOpenSpinner] = useState(false);
+
+    useEffect(() => {
+        const cardsForIntersection = document.querySelectorAll('.exploreCard');
+        cardsForIntersection.forEach(card => {
+            observer.observe(card);
+        });
+    }, [favouritesList]);
 
     useEffect(() => {
         window.scrollTo({top: 150, behavior: 'smooth'});

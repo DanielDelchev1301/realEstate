@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { sendMail } from "../../service/adminService";
 import Badge from "../Badge/Badge";
 import Spinner from '../Spinner/Spinner';
+import { observer, observerBadge } from '../../constants/helperFunctions';
 
 function ReachUs() {
     const [propertiesList, setPropertiesList] = useState([]);
@@ -21,6 +22,15 @@ function ReachUs() {
     const [message, setMessage] = useState('');
     const [open, setOpen] = useState(false);
     const [openSpinner, setOpenSpinner] = useState(false);
+
+    useEffect(() => {
+        const reachUsForm = document.querySelector('.reachUsForm');
+        const badgesForIntersection = document.querySelectorAll('.badgeContainer');
+        observer.observe(reachUsForm);
+        badgesForIntersection.forEach(badge => {
+            observerBadge.observe(badge);
+        });
+    }, []);
 
     useEffect(() => {
         fetch();

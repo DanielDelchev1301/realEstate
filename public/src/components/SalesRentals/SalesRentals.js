@@ -7,6 +7,7 @@ import FiltersAndSort from './FiltersAndSort';
 import Spinner from '../Spinner/Spinner';
 import Carousel from 'react-material-ui-carousel';
 import { Link } from 'react-router-dom';
+import { observer } from '../../constants/helperFunctions';
 
 function SalesRentals({type}) {
     const [initialPropertyList, setInitialPropertyList] = useState([]);
@@ -17,6 +18,13 @@ function SalesRentals({type}) {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 6;
+
+    useEffect(() => {
+        const cardsForIntersection = document.querySelectorAll('.exploreWideCard');
+        cardsForIntersection.forEach(card => {
+            observer.observe(card);
+        });
+    }, [_filteredPropertyList]);
 
     useEffect(() => {
         fetch();
@@ -87,12 +95,12 @@ function SalesRentals({type}) {
                     {initialPropertyList.map(property =>
                         <>
                             <img src={`http://localhost:5000/${property.images[0].destination}${property.images[0].filename}`} alt="" className="propertyImageSales" />
-                                <Link to={`/properties/details/${property._id}`} className="linkToInCarousel">
-                                    <div className="carouselImageInfoBox">
-                                            <h2 className="carouselImageTitle">{property.title}</h2>
-                                            <h2 className="carouselPrice">{`${property.price.number} ${property.price.currency ? 'EUR' : 'BGN'}`}</h2>
-                                    </div>
-                                </Link>
+                            <Link to={`/properties/details/${property._id}`} className="linkToInCarousel">
+                                <div className="carouselImageInfoBox">
+                                        <h2 className="carouselImageTitle">{property.title}</h2>
+                                        <h2 className="carouselPrice">{`${property.price.number} ${property.price.currency ? 'EUR' : 'BGN'}`}</h2>
+                                </div>
+                            </Link>
                         </>    
                     )}
                 </Carousel>

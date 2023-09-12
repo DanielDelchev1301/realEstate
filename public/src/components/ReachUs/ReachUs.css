@@ -21,8 +21,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-top: 150px;
+    width: 90%;
+    margin-top: 50px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 500ms ease-in-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateX(0px);
 }
 
 .reachUsTitle {
@@ -38,10 +46,6 @@
 .reachUsInputIcon {
     color: white;
 }
-
-/* .MuiInputBase-input {
-    color: white !important;
-} */
 
 .reachUsButton {
     font-size: 20px;
@@ -85,6 +89,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin: 150px 0px;
 }
 
 @media screen and (max-width: 1445px) {
