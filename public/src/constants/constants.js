@@ -1,3 +1,4 @@
+export const GOOGLE_MAP_API_KEY = "AIzaSyCWahxjyEg-dd9mNCPfk1N4_SnnCqTqyPs";
 
 export const CATEGORIES_OBJECT = {
     HOUSE: 'House',

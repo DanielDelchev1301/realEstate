@@ -18,8 +18,8 @@ import { createProperty } from '../../service/adminService';
 import { initialPropertyInfo, categoriesInfo, typeOptions, appendPropertyInfo, isButtonDisabled } from './adminConstantsAndHelperFunctions.js';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId } from 'react-google-places-autocomplete';
-import { GOOGLE_MAP_API_KEY } from '../../constants/constants';
 import Spinner from '../Spinner/Spinner';
+import { GOOGLE_MAP_API_KEY } from '../../constants/constants';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 

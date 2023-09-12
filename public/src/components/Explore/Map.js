@@ -1,10 +1,10 @@
-import { GOOGLE_MAP_API_KEY } from "../../constants/constants";
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import "./Map.css";
 import GoogleMapReact from 'google-map-react';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { observerMap } from "../../constants/helperFunctions";
+import { GOOGLE_MAP_API_KEY } from '../../constants/constants';
 
 const defaultProps = {
     center: {
