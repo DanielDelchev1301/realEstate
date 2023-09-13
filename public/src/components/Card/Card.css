@@ -36,6 +36,10 @@
 
 .exploreCardInfo {
     margin: 10px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
 }
 
 .exploreCardDescription {
@@ -65,6 +69,33 @@
     justify-content: space-around;
     flex-direction: row-reverse;
     align-items: center;
+}
+
+.exploreCardPrice {
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 10px;
+}
+
+.cardCategories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.squareMetersCard {
+    margin: 5px;
+    padding: 5px;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+}
+
+.typeCardWideCard {
+    padding: 5px;
+    margin: 5px;
+    color: white;
+    background-color: teal;
+    border-radius: 5px;
 }
 
 .favIcon {

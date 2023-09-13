@@ -37,8 +37,16 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
                     }
                     <h3 className="exploreCardTitle colorText">{propertyInfo.title}</h3>
                 </div>
+                <div className="cardCategories">
+                    {propertyInfo.categories.map((category, index) => (
+                        <p key={category + '&&&' + index} className="wideCardCategory">{category}</p>
+                    ))}
+                    <p className="typeCardWideCard">{propertyInfo && propertyInfo.type}</p>
+                    <p className="squareMetersCard colorText"><strong>{propertyInfo.squareMeters}</strong> m²</p>
+                    <p className="squareMetersCard colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number / propertyInfo.squareMeters)}</strong>/m²</p>
+                </div>
                 <div>
-                    <p className="exploreCardDescription colorText">{getDescription(propertyInfo.description)}</p>
+                    {/* <p className="exploreCardDescription colorText">{getDescription(propertyInfo.description)}</p> */}
                     <p className="exploreCardPrice colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number)}</strong></p>
                     <Link to={`/properties/details/${propertyInfo._id}`} className="exploreCardButtonContainer">
                         <button className="exploreCardButton" onClick={() => rerender && rerender()}>Details</button>

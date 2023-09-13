@@ -41,6 +41,7 @@ function WideCard({propertyInfo, favourites = {}, setFavourites, rerender}) {
                     {propertyInfo.categories.map((category, index) => (
                         <p key={category + '&&&' + index} className="wideCardCategory">{category}</p>
                     ))}
+                    <p className="typeCardWideCard">{propertyInfo && propertyInfo.type}</p>
                     <p className="squareMetersWideCard colorText"><strong>{propertyInfo.squareMeters}</strong> m²</p>
                     <p className="squareMetersWideCard colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number / propertyInfo.squareMeters)}</strong>/m²</p>
                 </div>

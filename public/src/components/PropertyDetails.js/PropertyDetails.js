@@ -139,6 +139,8 @@ function PropertyDetails() {
                             <p key={category + '&&&' + index} className="detailsCategory">{category}</p>
                         ))}
                         <p className="detailsType">{property && property.type}</p>
+                        <p className="squareMetersDetails colorText"><strong>{property && property.squareMeters}</strong> m²</p>
+                        <p className="squareMetersDetails colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: property && property.price.currency ? "EUR" : "BGN" }).format(property && (property.price.number / property.squareMeters))}</strong>/m²</p>
                         {isFavourite
                             ? <FavoriteIcon className="favIconDetails" onClick={() => handleClickFav(false, property._id)}/>
                             : <FavoriteBorderIcon className="favIconDetails" onClick={() => handleClickFav(true, property._id)}/>
