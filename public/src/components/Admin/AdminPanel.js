@@ -15,7 +15,7 @@ import { DropzoneArea } from 'material-ui-dropzone';
 import { Autocomplete, InputLabel, MenuItem, Select, Switch, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { createProperty } from '../../service/adminService';
-import { initialPropertyInfo, categoriesInfo, typeOptions, appendPropertyInfo, isButtonDisabled } from './adminConstantsAndHelperFunctions.js';
+import { initialPropertyInfo, categoriesInfo, typeOptions, appendPropertyInfo, isButtonDisabled, conditionOptions } from './adminConstantsAndHelperFunctions.js';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 import Spinner from '../Spinner/Spinner';
@@ -257,6 +257,17 @@ function AdminPanel() {
                         getOptionLabel={(option) => option}
                         className="inputField typeField"
                         renderInput={(params) => <TextField {...params} label="Type" variant="outlined" color="warning" />}
+                    />
+                </div>
+                <div className="inputRow">
+                    <ContrastIcon className="inputIcon"/>
+                    <Autocomplete 
+                        value={propertyInfo.condition}
+                        onChange={(event, value) => handleChange(value, 'condition')}
+                        options={conditionOptions}
+                        getOptionLabel={(option) => option}
+                        className="inputField typeField"
+                        renderInput={(params) => <TextField {...params} label="Condition" variant="outlined" color="warning" />}
                     />
                 </div>
                 <DropzoneArea 

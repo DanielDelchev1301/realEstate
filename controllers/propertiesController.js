@@ -2,10 +2,10 @@ import express from 'express';
 import { 
     deleteProperty,
     editProperty, 
+    findByIdAndUpdate, 
     getAllProperties, 
     getAllPropertiesByType, 
     getPropertiesById, 
-    getPropertyById,
 } from '../services/propertyService.js';
 const router = express.Router();
 
@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 
 router.get('/details/one/:id', async (req, res) => {
     try {
-        const property = await getPropertyById(req.params.id);
-        res.status(200).json(property);
+        const updatedProperty = await findByIdAndUpdate(req.params.id);
+        res.status(200).json(updatedProperty);
     } catch (error) {
         console.error(error);
         res.status(400).json({message: error.message});

@@ -69,6 +69,10 @@ const propertySchema = new mongoose.Schema({
         type: String,
         required: [true, 'Type is required']
     },
+    condition: {
+        type: String,
+        required: [true, 'Condition is required']
+    },
     images: [
         {
             fieldname: {
@@ -104,7 +108,10 @@ const propertySchema = new mongoose.Schema({
                 required: [true, 'Size is required']
             }
         }
-    ]
+    ],
+    seen: {
+        type: Number
+    }
 });
 
 const Property = mongoose.model('Property', propertySchema);

@@ -14,9 +14,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
 import Map from '../Explore/Map.js';
 import Card from '../Card/Card.js';
-import { Alert, Collapse, TextField } from '@mui/material';
+import { Alert, Autocomplete, Collapse, TextField } from '@mui/material';
 import Spinner from '../Spinner/Spinner';
 import { observer } from '../../constants/helperFunctions';
+import { conditionOptions } from '../Admin/adminConstantsAndHelperFunctions';
 
 function PropertyDetails() {
     const isAdmin = JSON.parse(window.localStorage.getItem('user'));
@@ -45,7 +46,7 @@ function PropertyDetails() {
 
     useEffect(() => {
         window.scrollTo({top: 200, behavior: 'smooth'});
-    }, []);
+    }, [rerender]);
 
     useEffect(() => {
         setIsFavourite(favourites[property && property._id]);
@@ -53,7 +54,7 @@ function PropertyDetails() {
 
     useEffect(() => {
         fetch();
-    }, [favourites, rerender]);
+    }, [rerender]);
 
     const fetch = async () => {
         setOpenSpinner(true);
@@ -200,7 +201,7 @@ function PropertyDetails() {
                             </>
                             : <>
                                 <h1>{property && property.title}</h1>
-                                <p>Price: <span>{property && property.price.number}</span> {property && property.price.currency ? 'EUR' : 'BGN'}</p>
+                                <p>Price: <strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: property && property.price.currency ? "EUR" : "BGN" }).format(property && property.price.number)}</strong></p>
                             </>
                         }
                         {isAdmin && isAdmin.admin && 
@@ -252,9 +253,9 @@ function PropertyDetails() {
                                     />
                                 </>
                                 : <>
-                                    <p className="addressInfo colorText">Address: {property && property.address.address}</p>
-                                    <p className="ownerNameInfo colorText">Owner Name: {property && property.ownerName}</p>
-                                    <p className="ownerPhoneInfo colorText">Owner Phone: {property && property.ownerPhoneNumber}
+                                    <p className="addressInfo colorText">Address: <strong>{property && property.address.address}</strong></p>
+                                    <p className="ownerNameInfo colorText">Owner Name: <strong>{property && property.ownerName}</strong></p>
+                                    <p className="ownerPhoneInfo colorText">Owner Phone: <strong>{property && property.ownerPhoneNumber}</strong>
                                         <a href={`tel:${property && property.ownerPhoneNumber}`}>
                                             <CallIcon />
                                         </a>
@@ -262,6 +263,18 @@ function PropertyDetails() {
                                 </>
                             }
                         </div>
+                    }
+                    <p className="howManyTimePropertyHaveBeenSeen colorText">Seen <strong>{property && property.seen}</strong> times</p>
+                    {isAdmin && isAdmin.admin && editMode
+                        ?   <Autocomplete
+                            value={propertyForEdit.condition}
+                            onChange={(event, value) => handleChange(value, 'condition')}
+                            options={conditionOptions}
+                            getOptionLabel={(option) => option}
+                            className="categoriesSelectFilter"
+                            renderInput={(params) => <TextField {...params} variant="outlined" />}
+                        />
+                        :   <p className={`propertyCondition ${property && property.condition === 'Already Built' ? 'conditionGreen' : 'conditionOrange'} colorText`}>Condition: <strong>{property && property.condition}</strong></p>
                     }
                     <div className="detailsMainInfo">
                         <div className="detailsRows">

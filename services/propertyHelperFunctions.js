@@ -11,7 +11,9 @@ export const adaptProperty = (property, images) => {
         date: property.date,
         price: (JSON.parse(property.price)),
         categories: (JSON.parse(property.categories)),
+        condition: property.condition,
         type: property.type,
-        images: images
+        images: images,
+        seen: property.seen
     };
 };

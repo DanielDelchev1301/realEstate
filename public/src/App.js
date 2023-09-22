@@ -9,6 +9,7 @@ import PropertyDetails from './components/PropertyDetails.js/PropertyDetails';
 import ReachUs from './components/ReachUs/ReachUs';
 import Favourites from './components/Favourites/Favourites';
 import SalesRentals from './components/SalesRentals/SalesRentals';
+import FreeEvaluation from './components/FreeEvaluation/FreeEvaluation';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/sales" element={<SalesRentals type={'Sale'}/>} />
         <Route path="/rentals" element={<SalesRentals type={'Rent'}/>} />
+        <Route path="/freeEvaluation" element={<FreeEvaluation />} />
         <Route path="/properties/details/:_id" element={<PropertyDetails />}/>
 
       </Routes>

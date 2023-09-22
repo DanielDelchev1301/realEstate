@@ -18,6 +18,7 @@ function Header() {
                 <Link to="/sales" className="link">Sales</Link>
                 <Link to="/rentals" className="link">Rentals</Link>
                 <Link to="/favourites" className="link">Favourites</Link>
+                <Link to="/freeEvaluation" className="link">Free Evaluation</Link>
                 <Link to="/reachUs" className="link">Reach Us</Link>
                 {isAdmin && <Link to="/admin" className="link">Admin Panel</Link>}
             </div>

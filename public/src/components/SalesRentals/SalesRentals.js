@@ -35,7 +35,7 @@ function SalesRentals({type}) {
         let items = [...filteredPropertyList];
         _setFilteredPropertyList(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
-        window.scrollTo({top: 200, behavior: 'smooth'});
+        window.scrollTo({top: 200, behavior: 'auto'});
       }, [itemOffset, itemsPerPage, filteredPropertyList]);
 
     const fetch = async () => {

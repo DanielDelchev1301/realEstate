@@ -18,10 +18,16 @@
 .filterContent {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: 5px 0px;
 }
 
 .filterTitle {
     margin: 1rem;
+}
+
+.inputFieldFilters {
+    width: 40%;
 }
 
 .filtersApplyButton {
@@ -124,6 +130,10 @@
 @media screen and (max-width: 600px) {
     .filtersApplyButton, .filtersClearButton {
         width: 50%;
+    }
+
+    .filtersMainContainer {
+        width: 95%;
     }
 }
 

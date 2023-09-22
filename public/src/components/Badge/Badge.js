@@ -7,7 +7,7 @@ function Badge({phoneNumber}) {
             <img src="./images/unnamed.jpg" alt="avatar" className="badgeImg"/>
             <div className="badgeInfoContainer">
                 <h2 className="badgeNameInfo">Daniel Delchev</h2>
-                <p className="badgeDescriptionInfo">Senior Real Estate with more than two decades of experience.</p>
+                <p className="badgeDescriptionInfo">Senior Real Estate agent with more than two decades of experience.</p>
                 <p className="ownerPhoneInfo badgePhoneInfo">Phone: {phoneNumber}
                     <a href={`tel:${phoneNumber}`}>
                         <CallIcon />

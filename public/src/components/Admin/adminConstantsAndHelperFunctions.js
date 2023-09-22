@@ -18,8 +18,10 @@ export const initialPropertyInfo = {
         currency: 0 // 0=BGN, 1=EUR
     },
     categories: [],
+    condition: '',
     type: '',
-    images: []
+    images: [],
+    seen: 0
 };
 
 export const isButtonDisabled = (propertyInfo) => {
@@ -49,28 +51,35 @@ export const appendPropertyInfo = (formData, propertyInfo) => {
     formData.append('date', propertyInfo.date);
     formData.append('price', JSON.stringify(propertyInfo.price));
     formData.append('categories', JSON.stringify(propertyInfo.categories));
+    formData.append('condition', propertyInfo.condition);
     formData.append('type', propertyInfo.type);
+    formData.append('seen', propertyInfo.seen);
     return formData;
 };
 
 export const categoriesInfo = [
+    'Exclusive offer',
     'House',
-    'Apartment',
-    'Office',
+    'Floor of a house',
     'Land',
-    'Garage',
-    'Other',
+    'Apartment',
     'One room apartment',
     'Two room apartment',
     'Three room apartment',
     'Multiple room apartment',
-    'Exclusive offer',
     'Studio',
     'Maisonette',
-    'Floor of a house',
+    'Office',
+    'Garage',
+    'Other',
 ];
 
 export const typeOptions = [
     'Rent',
     'Sale'
+];
+
+export const conditionOptions = [
+    'Already Built',
+    'In Construction'
 ];

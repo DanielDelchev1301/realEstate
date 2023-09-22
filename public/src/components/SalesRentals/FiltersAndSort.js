@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { FILTERS, SORTING_OPTIONS } from '../../constants/constants';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
-import { Menu, MenuItem, Select, Slider } from '@mui/material';
+import { Autocomplete, Menu, MenuItem, Select, Slider, TextField, Tooltip } from '@mui/material';
 import './FiltersAndSort.css';
 import Spinner from '../Spinner/Spinner';
-import { categoriesInfo } from '../Admin/adminConstantsAndHelperFunctions';
+import { categoriesInfo, conditionOptions } from '../Admin/adminConstantsAndHelperFunctions';
 
 function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredPropertyList}) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -67,18 +67,45 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
 
     const handleFilterButton = () => {
         let filteredList = [...initialPropertyList];
-        filteredList = filteredList.filter(property => {
-            return property.price.numberInBGN >= filters.price.number[0] && property.price.numberInBGN <= filters.price.number[1];
-        });
-        filteredList = filteredList.filter(property => {
-            return property.squareMeters >= filters.squareMeters[0] && property.squareMeters <= filters.squareMeters[1];
-        });
+
+        if (filters.price.from !== '' && filters.price.to !== '') {
+            filteredList = filteredList.filter(property => {
+                return property.price.numberInBGN >= filters.price.from && property.price.numberInBGN <= filters.price.to;
+            });
+        } else if (filters.price.from !== '') {
+            filteredList = filteredList.filter(property => {
+                return property.price.numberInBGN >= filters.price.from;
+            });
+        } else if (filters.price.to !== '') {
+            filteredList = filteredList.filter(property => {
+                return property.price.numberInBGN <= filters.price.to;
+            });
+        }
+
+        if (filters.squareMeters.from !== '' && filters.squareMeters.to !== '') {
+            filteredList = filteredList.filter(property => {
+                return property.squareMeters.numberInBGN >= filters.squareMeters.from && property.squareMeters.numberInBGN <= filters.squareMeters.to;
+            });
+        } else if (filters.squareMeters.from !== '') {
+            filteredList = filteredList.filter(property => {
+                return property.squareMeters.numberInBGN >= filters.squareMeters.from;
+            });
+        } else if (filters.squareMeters.to !== '') {
+            filteredList = filteredList.filter(property => {
+                return property.squareMeters.numberInBGN <= filters.squareMeters.to;
+            });
+        }
+
         filteredList = filteredList.filter(property => {
             return property.rooms >= filters.rooms[0] && property.rooms <= filters.rooms[1];
         });
         filteredList = filteredList.filter(property => {
             return property.builtIn >= filters.builtIn[0] && property.builtIn <= filters.builtIn[1];
         });
+        filteredList = filteredList.filter(property => {
+            return property.condition === filters.condition || filters.condition === '' || filters.condition === null;
+        });
+
         if (filters.categories.length > 0 && filters.categories.length !== categoriesInfo.length) {
             filteredList = filteredList.filter(property => {
                 return filters.categories.some(category => property.categories.includes(category));
@@ -102,25 +129,45 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                 <FilterAltIcon className="filterIcon" onClick={() => setHideFilters(!hideFilters)}/>
                 <div className={`filtersContent ${hideFilters ? 'hideFilters' : ''}`}>
                     <div className="filterContent">
-                        <h4 className="filterTitle colorText">Price:</h4>
-                        <Slider 
-                            value={filters.price.number}
-                            onChange={(event, newValue) => setFilters({...filters, price: {...filters.price, number: newValue}})}
-                            min={0}
-                            max={1000000}
-                            step={1000}
-                            valueLabelDisplay="auto"
+                        <Tooltip title="The price filter is in BGN"><h4 className="filterTitle colorText">Price:</h4></Tooltip>
+                        <TextField 
+                            value={filters.price.from}
+                            onChange={(event) => setFilters({...filters, price: { ...filters.price, from: event.target.value === '' ? '' : Number(event.target.value) }})}
+                            id="standard-basic-price-from"
+                            type="number"
+                            className="inputFieldFilters"
+                            label="From"
+                            variant="standard"
+                        />
+                        <TextField 
+                            value={filters.price.to}
+                            onChange={(event) => setFilters({...filters, price: { ...filters.price, to: event.target.value === '' ? '' : Number(event.target.value) }})}
+                            id="standard-basic-price-to"
+                            type="number"
+                            className="inputFieldFilters"
+                            label="To"
+                            variant="standard"
                         />
                     </div>
                     <div className="filterContent">
                         <h4 className="filterTitle colorText">Square Meters:</h4>
-                        <Slider 
-                            value={filters.squareMeters}
-                            onChange={(event, newValue) => setFilters({...filters, squareMeters: newValue})}
-                            min={0}
-                            max={1000}
-                            step={1}
-                            valueLabelDisplay="auto"
+                        <TextField
+                            value={filters.squareMeters.from}
+                            onChange={(event) => setFilters({...filters, squareMeters: { ...filters.squareMeters, from: event.target.value === '' ? '' : Number(event.target.value) }})}
+                            id="standard-basic-sqareMeters-from"
+                            type="number"
+                            className="inputFieldFilters"
+                            label="From"
+                            variant="standard"
+                        />
+                        <TextField 
+                            value={filters.squareMeters.to}
+                            onChange={(event) => setFilters({...filters, squareMeters: { ...filters.squareMeters, to: event.target.value === '' ? '' : Number(event.target.value) }})}
+                            id="standard-basic-sqareMeters-to"
+                            type="number"
+                            className="inputFieldFilters"
+                            label="To"
+                            variant="standard"
                         />
                     </div>
                     <div className="filterContent">
@@ -129,7 +176,7 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                             value={filters.rooms}
                             onChange={(event, newValue) => setFilters({...filters, rooms: newValue})}
                             min={0}
-                            max={10}
+                            max={20}
                             step={1}
                             valueLabelDisplay="auto"
                         />
@@ -169,6 +216,17 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                                 </MenuItem>
                             ))}
                         </Select>
+                    </div>
+                    <div className="filterContent">
+                        <h4 className="filterTitle colorText">Condition:</h4>
+                        <Autocomplete 
+                            value={filters.condition}
+                            onChange={(event, value) => setFilters({...filters, condition: value})}
+                            options={conditionOptions}
+                            getOptionLabel={(option) => option}
+                            className="categoriesSelectFilter"
+                            renderInput={(params) => <TextField {...params} variant="outlined" />}
+                        />
                     </div>
                     <div className="filtersButtons">
                         <button onClick={handleFilterButton} className="filtersApplyButton">Apply Filters</button>

@@ -27,3 +27,8 @@ export const deleteProperty = async (id) => {
 export const getAllPropertiesByType = async (type) => {
     return await Property.find({type: type});
 };
+
+export const findByIdAndUpdate = async (id) => {
+    const property = await Property.findById(id);
+    return await Property.findByIdAndUpdate(id, {$set: {seen: property.seen + 1}}, {new: true});
+}

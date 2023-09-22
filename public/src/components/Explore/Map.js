@@ -4,15 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { observerMap } from "../../constants/helperFunctions";
-import { GOOGLE_MAP_API_KEY } from '../../constants/constants';
-
-const defaultProps = {
-    center: {
-      lat: 42.00703,
-      lng: 24.8762844
-    },
-    zoom: 10
-  };
+import { GOOGLE_MAP_API_KEY, defaultProps } from '../../constants/constants';
 
 function Map({properties}) {
     const [previewCardVisible, setPreviewCardVisible] = useState({});

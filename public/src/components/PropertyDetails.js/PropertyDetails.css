@@ -109,10 +109,6 @@
     font-size: 25px;
 }
 
-.detailsHeader p span {
-    font-weight: bold;
-}
-
 .inputFieldDetails {
     width: 30%;
     margin: 1rem !important;
@@ -143,6 +139,27 @@
 .ownerPhoneInfo a {
     color: green;
     margin: 1rem;
+}
+
+.howManyTimePropertyHaveBeenSeen {
+    font-size: 20px;
+    padding: 1rem;
+    background: #ff000019;
+    margin: 0;
+}
+
+.propertyCondition {
+    font-size: 20px;
+    padding: 1rem;
+    margin: 0;
+}
+
+.conditionGreen {
+    background: #00ff001b;
+}
+
+.conditionOrange {
+    background: #ff99001b;
 }
 
 .detailsMainInfo {
