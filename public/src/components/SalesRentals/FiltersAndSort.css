@@ -28,6 +28,7 @@
 
 .inputFieldFilters {
     width: 40%;
+    margin: 0px 8px !important;
 }
 
 .filtersApplyButton {

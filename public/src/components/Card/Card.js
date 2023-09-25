@@ -8,10 +8,6 @@ import Carousel from 'react-material-ui-carousel';
 function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
     const [isFavourite, setIsFavourite] = useState(favourites[propertyInfo._id]);
 
-    const getDescription = (description) => {
-        return description.length > 100 ? description.slice(0, 100) + '...' : description;
-    };
-
     const handleClickFav = (isFavourite, propertyId) => {
         let favs = {
             ...favourites,

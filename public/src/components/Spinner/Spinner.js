@@ -1,4 +1,5 @@
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop } from "@mui/material";
+import { HashLoader } from "react-spinners";
 
 function Spinner({open}) {
     return (
@@ -6,7 +7,7 @@ function Spinner({open}) {
             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={open}
         >
-            <CircularProgress color="inherit" />
+            <HashLoader color="#00d0d0" />
         </Backdrop>
     );
 }

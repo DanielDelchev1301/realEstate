@@ -11,6 +11,7 @@ import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import BedIcon from '@mui/icons-material/Bed';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import { DropzoneArea } from 'material-ui-dropzone';
 import { Autocomplete, InputLabel, MenuItem, Select, Switch, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
@@ -260,7 +261,7 @@ function AdminPanel() {
                     />
                 </div>
                 <div className="inputRow">
-                    <ContrastIcon className="inputIcon"/>
+                    <ConstructionIcon className="inputIcon"/>
                     <Autocomplete 
                         value={propertyInfo.condition}
                         onChange={(event, value) => handleChange(value, 'condition')}

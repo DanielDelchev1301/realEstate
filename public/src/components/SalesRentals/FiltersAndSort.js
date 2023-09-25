@@ -84,15 +84,15 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
 
         if (filters.squareMeters.from !== '' && filters.squareMeters.to !== '') {
             filteredList = filteredList.filter(property => {
-                return property.squareMeters.numberInBGN >= filters.squareMeters.from && property.squareMeters.numberInBGN <= filters.squareMeters.to;
+                return property.squareMeters >= filters.squareMeters.from && property.squareMeters <= filters.squareMeters.to;
             });
         } else if (filters.squareMeters.from !== '') {
             filteredList = filteredList.filter(property => {
-                return property.squareMeters.numberInBGN >= filters.squareMeters.from;
+                return property.squareMeters >= filters.squareMeters.from;
             });
         } else if (filters.squareMeters.to !== '') {
             filteredList = filteredList.filter(property => {
-                return property.squareMeters.numberInBGN <= filters.squareMeters.to;
+                return property.squareMeters <= filters.squareMeters.to;
             });
         }
 
