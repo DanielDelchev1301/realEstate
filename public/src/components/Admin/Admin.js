@@ -5,11 +5,13 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import './Admin.css';
 import { useEffect, useState } from 'react';
 import AdminPanel from './AdminPanel';
+import { loginAsAdmin } from '../../service/adminService';
 
 function Admin() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [open, setOpen] = useState(false);
+    const [openError, setOpenError] = useState(false);
+    const [openSuccess, setOpenSuccess] = useState(false);
 
     const isAdmin = JSON.parse(window.localStorage.getItem('user'))?.admin;
 
@@ -17,13 +19,16 @@ function Admin() {
         window.scrollTo({top: 0, behavior: 'smooth'});
     }, []);
 
-    const handleLoginButton = () => {
-        if (username === 'admin' && password === 'admin') {
-            console.log('Login successful!');
-            window.localStorage.setItem('user', JSON.stringify({admin: "true"}));
-        } else {
-            console.log('Login failed!');
-            setOpen(true);
+    const handleLoginButton = async () => {
+        try {
+            const isAdmin = await loginAsAdmin({username, password});
+            if (isAdmin.status === 200) {
+                window.localStorage.setItem('user', JSON.stringify({admin: "true"}));
+                setOpenSuccess(true);
+            }
+        } catch (error) {
+            console.error(error);
+            setOpenError(true);
         }
         setUsername('');
         setPassword('');
@@ -37,10 +42,18 @@ function Admin() {
                     : <div className="loginFlex">
                         <div className="loginForm">
                             <AccountBalanceIcon className="accountBalanceIcon"/>
-                            <Collapse in={open}>
+                            <Collapse in={openSuccess}>
+                                <Alert 
+                                    severity="success"
+                                    onClose={() => setOpenSuccess(false)}
+                                >
+                                    Успешен логин!
+                                </Alert>
+                            </Collapse>
+                            <Collapse in={openError}>
                                 <Alert 
                                     severity="error"
-                                    onClose={() => setOpen(false)}
+                                    onClose={() => setOpenError(false)}
                                 >
                                     Невалидно потребителско име или парола!
                                 </Alert>

@@ -8,6 +8,14 @@ const router = express.Router();
 
 const upload = multer({dest: 'uploads/'});
 
+router.post('/login', async (req, res) => {
+    if (req.body.username === 'admin' && req.body.password === 'admin') {
+        res.status(200).json({message: 'Login successful!'});
+    } else {
+        res.status(400).json({message: 'Login failed!'});
+    }
+});
+
 router.post('/create', upload.array('images'), async (req, res) => {
     try {
         const propertyInfo = adaptProperty(req.body, req.files);
