@@ -100,7 +100,8 @@
 
 .favIcon {
     color: rgb(255, 57, 57);
-    font-size: 30px;
+    font-size: 30px !important;
+    margin: 1rem;
 }
 
 .favIcon:hover {

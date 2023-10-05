@@ -39,8 +39,6 @@ function AdminPanel() {
         if (googleValue && googleValue.value && googleValue.value['place_id']) {
             geocodeByPlaceId(googleValue.value['place_id'])
                 .then(results => {
-                    console.log(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-                    console.log(results[0].formatted_address);
                     setPropertyInfo({
                         ...propertyInfo,
                         addressInfo: {

@@ -17,6 +17,7 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
 
     useEffect(() => {
         handleFilterButton();
+        console.log(initialPropertyList);
     }, [initialPropertyList]);
 
     const handleOpen = (event) => {

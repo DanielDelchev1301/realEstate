@@ -49,7 +49,7 @@ function ReachUs() {
     const handleSendMail = async () => {
         setOpenSpinner(true);
         try {
-            const mail = await sendMail({name, email, message});
+            await sendMail({name, email, message});
             setEmail('');
             setName('');
             setMessage('');

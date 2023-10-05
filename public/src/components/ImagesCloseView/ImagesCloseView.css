@@ -1,0 +1,79 @@
+.carouselCloseView {
+    width: 600px;
+    height: 650px;
+}
+
+.propertyImageCloseView {
+    width: 600px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.clearIconInCloseImageView {
+    color: white !important;
+    position: relative;
+    right: 0px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .carouselCloseView {
+        width: 500px;
+        height: 550px;
+    }
+    
+    .propertyImageCloseView {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .carouselCloseView {
+        width: 450px;
+    }
+    
+    .propertyImageCloseView {
+        width: 450px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .carouselCloseView {
+        width: 400px;
+    }
+    
+    .propertyImageCloseView {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .carouselCloseView {
+        width: 350px;
+    }
+    
+    .propertyImageCloseView {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .carouselCloseView {
+        width: 300px;
+    }
+    
+    .propertyImageCloseView {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .carouselCloseView {
+        width: 250px;
+    }
+    
+    .propertyImageCloseView {
+        width: 250px;
+    }
+}

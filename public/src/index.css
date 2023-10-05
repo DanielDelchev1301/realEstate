@@ -17,3 +17,10 @@ body {
 .colorText {
     color: #444343;
 }
+
+.carouselBox .MuiIconButton-root,
+.exploreCardCarousel .MuiIconButton-root,
+.wideCardCarousel .MuiIconButton-root,
+.carouselCloseView .MuiIconButton-root {
+    background-color: #62626265 !important;
+}

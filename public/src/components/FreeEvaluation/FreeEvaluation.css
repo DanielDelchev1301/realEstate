@@ -19,12 +19,80 @@
 .freeEvaluationForm {
     display: flex;
     flex-direction: column;
-    width: 60%;
     align-items: center;
-    margin: 200px 0px;
-    min-height: 500px;
-    justify-content: center;
-    background-color: rgba(0, 128, 128, 0);
-    border-radius: 5px;
-    box-shadow: 0px 0px 100px 1px whitesmoke;
+    width: 90%;
+    margin: 50px 0px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 500ms ease-in-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+
+.freeEvaluationTitle {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.freeEvaluationInputRow {
+    margin: 20px 0px;
+    justify-content: start;
+}
+
+.radioButtonsRow {
+    border-top: 1px solid #474747;
+    padding-top: 1rem;
+}
+
+.radioButtonsTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1rem;
+    color: white;
+}
+
+.inputFieldFreeEvaluation {
+    width: 96%;
+}
+
+.freeEvaluationInputIcon {
+    color: white;
+}
+
+.freeEvaluationButton {
+    font-size: 20px;
+    width: 35%;
+    margin: 30px 0px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    color: rgb(0, 94, 94);
+}
+
+.freeEvaluationButtonCanHover {
+    cursor: pointer;
+}
+
+.freeEvaluationButtonCanHover:hover {
+    animation: freeEvaluationButtonHover 200ms ease-in-out;
+    background-color: rgb(0, 94, 94);
+    color: white;
+}
+
+@keyframes freeEvaluationButtonHover {
+    0% {
+        background-color: white;
+        color: rgb(0, 94, 94);
+    }
+    100% {
+        background-color: rgb(0, 94, 94);
+        color: white;
+    }
 }

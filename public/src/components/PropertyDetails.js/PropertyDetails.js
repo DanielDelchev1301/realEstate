@@ -18,6 +18,7 @@ import { Alert, Autocomplete, Collapse, TextField } from '@mui/material';
 import Spinner from '../Spinner/Spinner';
 import { observer } from '../../constants/helperFunctions';
 import { conditionOptions } from '../Admin/adminConstantsAndHelperFunctions';
+import ImagesCloseView from '../ImagesCloseView/ImagesCloseView';
 
 function PropertyDetails() {
     const isAdmin = JSON.parse(window.localStorage.getItem('user'));
@@ -36,6 +37,7 @@ function PropertyDetails() {
         edited: false
     });
     const [openSpinner, setOpenSpinner] = useState(false);
+    const [openImagesCloseView, setOpenImagesCloseView] = useState(false);
 
     useEffect(() => {
         const cardsForIntersection = document.querySelectorAll('.exploreCard');
@@ -126,12 +128,15 @@ function PropertyDetails() {
         <div className="mainDetailsContainer">
             <h1 className="detailsTitle colorText">Check More Detailed Info About This Property</h1>
             <Spinner open={openSpinner}/>
+            <ImagesCloseView open={openImagesCloseView} images={property && property.images} setOpenImagesCloseView={setOpenImagesCloseView}/>
             <div className="detailsContainer">
                 <Carousel
                     className="carouselBox"
+                    interval={openImagesCloseView ? '1000000000' : '3000'}
+                    navButtonsAlwaysVisible={true}
                 >
                     {property && property.images.map(image => (
-                        <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="propertyImage" />
+                        <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="propertyImage" onClick={() => setOpenImagesCloseView(true)}/>
                     ))}
                 </Carousel>
                 <div className="detailsInfo">

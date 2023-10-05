@@ -83,3 +83,10 @@ export const conditionOptions = [
     'Already Built',
     'In Construction'
 ];
+
+export const typeMaterial = [
+    'Bricks',
+    'Panel',
+    'Reinforced Concrete',
+    'Other'
+];

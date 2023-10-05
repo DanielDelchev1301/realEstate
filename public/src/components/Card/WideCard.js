@@ -24,7 +24,7 @@ function WideCard({propertyInfo, favourites = {}, setFavourites, rerender}) {
 
     return(
         <div className="exploreWideCard">
-            <Carousel className="wideCardCarousel" interval={10000}>
+            <Carousel className="wideCardCarousel" interval={10000} navButtonsAlwaysVisible={true}>
                 {propertyInfo && propertyInfo.images.map(image => (
                     <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="wideCardCarouselImage" />
                 ))}

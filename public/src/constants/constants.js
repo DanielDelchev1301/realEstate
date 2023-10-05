@@ -47,3 +47,17 @@ export const defaultProps = {
     },
     zoom: 10
 };
+
+export const defaultFreeEvaluationInfo = {
+    email: '',
+    name: '',
+    message: '',
+    phone: '',
+    address: '',
+    squareMeters: '',
+    type: '',
+    material: '',
+    furniture: '',
+    garage: '',
+    yard: '',
+};

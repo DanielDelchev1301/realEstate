@@ -20,7 +20,7 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
 
     return(
         <div className="exploreCard">
-            <Carousel className="exploreCardCarousel" interval={10000}>
+            <Carousel className="exploreCardCarousel" interval={10000} navButtonsAlwaysVisible={true}>
                 {propertyInfo && propertyInfo.images.map(image => (
                     <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="exploreCardImage" />
                 ))}
