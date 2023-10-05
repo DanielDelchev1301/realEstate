@@ -14,7 +14,7 @@ function ImagesCloseView({open, images, setOpenImagesCloseView}) {
                 navButtonsAlwaysVisible={true}
             >
                 {images && images.map(image => (
-                    <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="снимки на имота" className="propertyImageCloseView" />
+                    <img src={`https://realestatebulgariaserver.onrender.com/${image.destination}${image.filename}`} alt="снимки на имота" className="propertyImageCloseView" />
                 ))}
             </Carousel>
         </Backdrop>

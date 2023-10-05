@@ -51,7 +51,7 @@ function Map({properties}) {
                         >
                             {previewCardVisible[property._id] &&
                                 <div className="previewCard">
-                                    <img src={`http://localhost:5000/${property.images[0].destination}${property.images[0].filename}`} alt="снимка на имота" className="previewImageCard" />
+                                    <img src={`https://realestatebulgariaserver.onrender.com/${property.images[0].destination}${property.images[0].filename}`} alt="снимка на имота" className="previewImageCard" />
                                     <div className="previewCardContent">
                                         <h3 className="previewCardTitle colorText">{property.title}</h3>
                                         <Link to={`/properties/details/${property._id}`} className="previewCardButtonContainer">

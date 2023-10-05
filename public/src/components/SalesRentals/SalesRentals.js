@@ -97,7 +97,7 @@ function SalesRentals({type}) {
                 <Carousel className="carouselBoxSales" interval={3000}>
                     {initialPropertyList.map(property =>
                         <>
-                            <img src={`http://localhost:5000/${property.images[0].destination}${property.images[0].filename}`} alt="Снимка на имота" className="propertyImageSales" />
+                            <img src={`https://realestatebulgariaserver.onrender.com/${property.images[0].destination}${property.images[0].filename}`} alt="Снимка на имота" className="propertyImageSales" />
                             <Link to={`/properties/details/${property._id}`} className="linkToInCarousel">
                                 <div className="carouselImageInfoBox">
                                         <h2 className="carouselImageTitle">{property.title}</h2>

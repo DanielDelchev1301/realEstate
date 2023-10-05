@@ -22,7 +22,7 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
         <div className="exploreCard">
             <Carousel className="exploreCardCarousel" interval={10000} navButtonsAlwaysVisible={true}>
                 {propertyInfo && propertyInfo.images.map(image => (
-                    <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="Снимка на имота" className="exploreCardImage" />
+                    <img src={`https://realestatebulgariaserver.onrender.com/${image.destination}${image.filename}`} alt="Снимка на имота" className="exploreCardImage" />
                 ))}
             </Carousel>
             <div className="exploreCardInfo">

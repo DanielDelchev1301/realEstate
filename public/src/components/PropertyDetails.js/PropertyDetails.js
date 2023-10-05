@@ -139,7 +139,7 @@ function PropertyDetails() {
                     navButtonsAlwaysVisible={true}
                 >
                     {property && property.images.map(image => (
-                        <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="снимки на имота" className="propertyImage" onClick={() => setOpenImagesCloseView(true)}/>
+                        <img src={`https://realestatebulgariaserver.onrender.com/${image.destination}${image.filename}`} alt="снимки на имота" className="propertyImage" onClick={() => setOpenImagesCloseView(true)}/>
                     ))}
                 </Carousel>
                 <div className="detailsInfo">
