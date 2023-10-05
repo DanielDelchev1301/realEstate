@@ -21,6 +21,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId } from 'react-google-places-autocomplete';
 import Spinner from '../Spinner/Spinner';
 import { GOOGLE_MAP_API_KEY } from '../../constants/constants';
+import { useNavigate } from 'react-router-dom';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -30,6 +31,8 @@ function AdminPanel() {
     const [propertyInfo, setPropertyInfo] = useState(initialPropertyInfo);
     const [googleValue, setGoogleValue] = useState(null);
     const [openSpinner, setOpenSpinner] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo({top: 0, behavior: 'smooth'});
@@ -74,7 +77,7 @@ function AdminPanel() {
             setPropertyInfo(initialPropertyInfo);
             setFormData({});
             setOpenSpinner(false);
-            window.location.replace(`/properties/details/${property.data._id}`);
+            navigate(`/properties/details/${property.data._id}`);
         } catch (error) {
             console.error(error);
             setOpenSpinner(false);
@@ -102,7 +105,7 @@ function AdminPanel() {
                         onChange={(event) => handleChange(event.target.value, 'title')}
                         id="standard-basic-title"
                         className="inputField"
-                        label="Title"
+                        label="Заглавие"
                         variant="standard"
                         color="warning"
                     />
@@ -114,7 +117,7 @@ function AdminPanel() {
                         onChange={(event) => handleChange(event.target.value, 'description')}
                         id="standard-basic-description"
                         className="inputField"
-                        label="Description"
+                        label="Описание"
                         variant="standard"
                         color="warning"
                         multiline
@@ -128,7 +131,7 @@ function AdminPanel() {
                         onChange={(event) => handleChange(event.target.value, 'ownerName')}
                         id="standard-basic-ownerName"
                         className="inputField"
-                        label="Owner Name"
+                        label="Име на собственик"
                         variant="standard"
                         color="warning"
                     />
@@ -141,7 +144,7 @@ function AdminPanel() {
                         id="standard-basic-ownerPhoneNumber"
                         className="inputField"
                         type="number"
-                        label="Owner Phone Number"
+                        label="Телефон на собственик"
                         variant="standard"
                         color="warning"
                     />
@@ -154,7 +157,7 @@ function AdminPanel() {
                         id="standard-basic-squareMeters"
                         className="inputField"
                         type="number"
-                        label="Square Meters"
+                        label="Квадратура"
                         variant="standard"
                         color="warning"
                     />
@@ -167,7 +170,7 @@ function AdminPanel() {
                         id="standard-basic-rooms"
                         className="inputField"
                         type="number"
-                        label="Rooms"
+                        label="Стаи"
                         variant="standard"
                         color="warning"
                     />
@@ -180,7 +183,7 @@ function AdminPanel() {
                         id="standard-basic-builtIn"
                         className="inputField"
                         type="number"
-                        label="Built In"
+                        label="Година на строеж"
                         variant="standard"
                         color="warning"
                     />
@@ -193,7 +196,7 @@ function AdminPanel() {
                         id="standard-basic-price"
                         type="number"
                         className="inputField"
-                        label="Price"
+                        label="Цена"
                         variant="standard"
                         color="warning"
                     />
@@ -210,7 +213,7 @@ function AdminPanel() {
                     <GooglePlacesAutocomplete 
                         apiKey={GOOGLE_MAP_API_KEY}
                         selectProps={{
-                            placeholder: 'Type property address...',
+                            placeholder: 'Напиши адреса на имота...',
                             googleValue,
                             onChange: setGoogleValue,
                             className: "googlePlacesAutocomplete",
@@ -221,7 +224,7 @@ function AdminPanel() {
                 <div className="inputRow">
                     <CategoryIcon className="inputIcon"/>
                     <div className="categoriesSelectContainer">
-                        <InputLabel id="demo-simple-select-label" >Categories</InputLabel>
+                        <InputLabel id="demo-simple-select-label" >Категории</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -255,7 +258,7 @@ function AdminPanel() {
                         options={typeOptions}
                         getOptionLabel={(option) => option}
                         className="inputField typeField"
-                        renderInput={(params) => <TextField {...params} label="Type" variant="outlined" color="warning" />}
+                        renderInput={(params) => <TextField {...params} label="Тип" variant="outlined" color="warning" />}
                     />
                 </div>
                 <div className="inputRow">
@@ -266,13 +269,13 @@ function AdminPanel() {
                         options={conditionOptions}
                         getOptionLabel={(option) => option}
                         className="inputField typeField"
-                        renderInput={(params) => <TextField {...params} label="Condition" variant="outlined" color="warning" />}
+                        renderInput={(params) => <TextField {...params} label="Състояние" variant="outlined" color="warning" />}
                     />
                 </div>
                 <DropzoneArea 
                     dropzoneClass="dropzoneArea"
                     acceptedFiles={['image/*']}
-                    dropzoneText={"Drag and drop an image here or click."}
+                    dropzoneText={"Натисни или постави снимки на имота."}
                     onChange={(files) => handleChangeDropzone(files)}
                     filesLimit={10}
                     showPreviews={true}
@@ -282,7 +285,7 @@ function AdminPanel() {
                     disabled={isButtonDisabled(propertyInfo)}
                     className={`createEstateButton ${isButtonDisabled(propertyInfo) ? 'disabledButton' : ''}`}
                     onClick={handleCreateProperty}
-                >Create</button>
+                >Създай</button>
             </div>
         </div>
     );

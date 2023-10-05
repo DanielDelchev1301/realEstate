@@ -3,7 +3,6 @@ import cors from 'cors';
 
 import { connect } from './config/initializeDatabase.js';
 import routes from './routes.js';
-// import upload from './middlewares/uploadImageMiddleware.js';
 
 const app = express();
 

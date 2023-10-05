@@ -1,28 +1,28 @@
 export const GOOGLE_MAP_API_KEY = "AIzaSyCWahxjyEg-dd9mNCPfk1N4_SnnCqTqyPs";
 
 export const CATEGORIES_OBJECT = {
-    EXCLUSIVE_OFFER: 'Exclusive offer',
-    HOUSE: 'House',
-    FLOOR_OF_A_HOUSE: 'Floor of a house',
-    LAND: 'Land',
-    APARTMENT: 'Apartment',
-    ONE_ROOM_APARTMENT: 'One room apartment',
-    TWO_ROOM_APARTMENT: 'Two room apartment',
-    THREE_ROOM_APARTMENT: 'Three room apartment',
-    MULTIPLE_ROOM_APARTMENT: 'Multiple room apartment',
-    STUDIO: 'Studio',
-    MAISONETTE: 'Maisonette',
-    OFFICE: 'Office',
-    GARAGE: 'Garage',
-    OTHER: 'Other',
+    EXCLUSIVE_OFFER: 'Ексклузивна оферта',
+    HOUSE: 'Къща',
+    FLOOR_OF_A_HOUSE: 'Етаж от къща',
+    LAND: 'Парцел',
+    APARTMENT: 'Апартамент',
+    ONE_ROOM_APARTMENT: 'Едностаен апартамент',
+    TWO_ROOM_APARTMENT: 'Двустаен апартамент',
+    THREE_ROOM_APARTMENT: 'Тристаен апартамент',
+    MULTIPLE_ROOM_APARTMENT: 'Многостаен апартамент',
+    STUDIO: 'Студио',
+    MAISONETTE: 'Мезонет',
+    OFFICE: 'Офис',
+    GARAGE: 'Гараж',
+    OTHER: 'Друго',
 };
 
 export const SORTING_OPTIONS = {
-    PRICE_LOW_TO_HIGH: 'Price Low to High',
-    PRICE_HIGH_TO_LOW: 'Price High to Low',
-    SQUARE_METERS_HIGH_TO_LOW: 'M² High to Low',
-    SQUARE_METERS_LOW_TO_HIGH: 'M² Low to High',
-    REMOVE_SORTING: 'Remove Sorting'
+    PRICE_LOW_TO_HIGH: 'Цена възходящо',
+    PRICE_HIGH_TO_LOW: 'Цена низходящо',
+    SQUARE_METERS_HIGH_TO_LOW: 'M² възходящо',
+    SQUARE_METERS_LOW_TO_HIGH: 'M² низходящо',
+    REMOVE_SORTING: 'Без сортиране'
 };
 
 export const FILTERS = {

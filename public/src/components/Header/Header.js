@@ -14,16 +14,16 @@ function Header() {
                 <MenuIcon className="menuIcon"/>
             </button>
             <div className={`menuOptions ${showMenu ? 'visible' : ''}`}  onClick={() => setShowMenu(false)} onMouseLeave={() => setShowMenu(false)}>
-                <Link to="/" className="link">Home</Link>
-                <Link to="/sales" className="link">Sales</Link>
-                <Link to="/rentals" className="link">Rentals</Link>
-                <Link to="/favourites" className="link">Favourites</Link>
-                <Link to="/freeEvaluation" className="link">Free Evaluation</Link>
-                <Link to="/reachUs" className="link">Reach Us</Link>
-                {isAdmin && <Link to="/admin" className="link">Admin Panel</Link>}
+                <Link to="/" className="link">Начало</Link>
+                <Link to="/sales" className="link">Продажби</Link>
+                <Link to="/rentals" className="link">Под Наем</Link>
+                <Link to="/favourites" className="link">Любими</Link>
+                <Link to="/freeEvaluation" className="link">Безплатна Оценка</Link>
+                <Link to="/reachUs" className="link">Контакти</Link>
+                {isAdmin && <Link to="/admin" className="link">Админ Панел</Link>}
             </div>
             <Link to="/admin">
-                <img src="images/logo1.png" alt="" className="navBarLogo" />
+                <img src="images/logo1.png" alt="Лого" className="navBarLogo" />
             </Link>
         </div>
     );

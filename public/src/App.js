@@ -20,8 +20,8 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/reachUs" element={<ReachUs />} />
         <Route path="/favourites" element={<Favourites />} />
-        <Route path="/sales" element={<SalesRentals type={'Sale'}/>} />
-        <Route path="/rentals" element={<SalesRentals type={'Rent'}/>} />
+        <Route path="/sales" element={<SalesRentals type={'Продажба'}/>} />
+        <Route path="/rentals" element={<SalesRentals type={'Под наем'}/>} />
         <Route path="/freeEvaluation" element={<FreeEvaluation />} />
         <Route path="/properties/details/:_id" element={<PropertyDetails />}/>
 

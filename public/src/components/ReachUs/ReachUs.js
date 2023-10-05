@@ -72,7 +72,7 @@ function ReachUs() {
         }
         setEmailError({
             error: true,
-            helperText: 'Enter valid email address (e.g. example@gmail.com)'
+            helperText: 'Въведи валиден имейл адрес, пример: (example@gmail.com)!'
         });
         return null;
     };
@@ -83,6 +83,7 @@ function ReachUs() {
 
     return (
         <div className="reachUsMainContainer">
+            <title>Ще Ви Помогнем да Изберете Най-Добрия Имот за Вас</title>
             <div className="reachUsContainer">
                 <div className="reachUsContent">
                     <div className="reachUsForm">
@@ -91,16 +92,16 @@ function ReachUs() {
                                 severity="success"
                                 onClose={() => setOpen(false)}
                             >
-                                Your message was sent successfully!
+                                Съобщението е изпратено успешно!
                             </Alert>
                         </Collapse>
-                        <h2 className="reachUsTitle">Write Us</h2>
+                        <h2 className="reachUsTitle">Пиши ни</h2>
                         <Spinner open={openSpinner}/>
                         <div className="inputRow reachUsInputRow">
                             <AlternateEmailIcon className="inputIcon reachUsInputIcon"/>
                             <TextField
                                 id="standard-basic-email"
-                                label="Email"
+                                label="Имейл"
                                 variant="standard"
                                 className="inputField"
                                 error={emailError.error}
@@ -113,7 +114,7 @@ function ReachUs() {
                             <AccountBoxIcon className="inputIcon reachUsInputIcon"/>
                             <TextField
                                 id="standard-basic-name"
-                                label="Name"
+                                label="Име"
                                 variant="standard"
                                 className="inputField"
                                 value={name}
@@ -124,7 +125,7 @@ function ReachUs() {
                             <CommentIcon className="inputIcon reachUsInputIcon"/>
                             <TextField
                                 id="standard-basic-message"
-                                label="Message"
+                                label="Съобщение"
                                 variant="standard"
                                 className="inputField"
                                 multiline
@@ -138,11 +139,11 @@ function ReachUs() {
                             disabled={isButtonDisabled()}
                             onClick={handleSendMail}
                         >
-                            Submit
+                            Изпрати
                         </button>
                     </div>
                     <div className="reachUsInfo">
-                        <h2 className="reachUsTitle">Agents</h2>
+                        <h2 className="reachUsTitle">Брокери</h2>
                         <div className="badgesContainer">
                             <Badge phoneNumber={'0894443846'}/>
                             <Badge phoneNumber={'0894443846'}/>

@@ -7,6 +7,7 @@ import { getAllProperties } from '../../service/propertyService.js';
 import { CATEGORIES_OBJECT } from '../../constants/constants';
 import Spinner from '../Spinner/Spinner';
 import { observer, observerDescriptions, observerTitles } from '../../constants/helperFunctions';
+import { typeOptions } from '../Admin/adminConstantsAndHelperFunctions';
 
 function Home() {
     const [propertiesList, setPropertiesList] = useState([]);
@@ -43,16 +44,17 @@ function Home() {
 
     return (
         <div className="homeContainer">
+            <title>Евтини и Луксозни Имоти Под Наем и За Продан</title>
             <div className="landscapeImageContainer">
-                <img src="images/landscape.png" alt="" className="landscapeImage" />
+                <img src="images/landscape.png" alt="недвижими имоти снимка" className="landscapeImage" />
                 <div className="homeFlexContainer">
-                    <h1 className="homeLandscapeTitle">Discover Your New Home</h1>
-                    <p className="homeLandscapeDescription">Helping Thousands Of Renters To Find Their Perfect Fit.</p>
+                    <h1 className="homeLandscapeTitle">Намери новия си дом</h1>
+                    <p className="homeLandscapeDescription">Помагаме на хиляди наематели и купувачи да открият евтин и надежден имот</p>
                 </div>
             </div>
             <Spinner open={openSpinner}/>
             <div className="exploreContainer">
-                <h2 className="homeExploreTitle colorText">Explore Exclusive Offers</h2>
+                <h2 className="homeExploreTitle colorText">Разгледайте ексклузивните оферти</h2>
                 <div className="exploreCards">
                     {propertiesList
                         .filter(property => property.categories.includes(CATEGORIES_OBJECT.EXCLUSIVE_OFFER))
@@ -63,42 +65,42 @@ function Home() {
                 </div>
             </div>
             <div className="exploreContainer">
-                <h2 className="homeExploreTitle colorText">Explore Properties For Sell</h2>
+                <h2 className="homeExploreTitle colorText">Разгледайте офертите за продажба</h2>
                 <div className="exploreCards">
                     {propertiesList
-                        .filter(property => property.type === "Sale")
+                        .filter(property => property.type === typeOptions[1])
                         .slice(0, 4)
                         .map(property => 
                         <Card key={property._id} propertyInfo={property} favourites={favourites} setFavourites={setFavourites}/>
                     )}
                 </div>
                 <Link to="/sales">
-                    <button className="exploreButton">View More</button>
+                    <button className="exploreButton">Виж още</button>
                 </Link>
             </div>
             <div className="exploreContainer">
-                <h2 className="homeExploreTitle colorText">Explore Properties For Rent</h2>
+                <h2 className="homeExploreTitle colorText">Разгледайте офертите под наем</h2>
                 <div className="exploreCards">
                     {propertiesList
-                        .filter(property => property.type === "Rent")
+                        .filter(property => property.type === typeOptions[0])
                         .slice(0, 4)
                         .map(property => 
                         <Card key={property._id} propertyInfo={property} favourites={favourites} setFavourites={setFavourites}/>
                     )}
                 </div>
                 <Link to="/rentals">
-                    <button className="exploreButton">View More</button>
+                    <button className="exploreButton">Виж още</button>
                 </Link>
             </div>
             <div className="mostSoldContainer">
-                <h2 className="titleMostContainer colorText">The Most Sold Out Units</h2>
-                <p className="textMostContainer colorText">With More Than Two Decades Of Experience Reaching New Hights</p>
+                <h2 className="titleMostContainer colorText">Най-много сключени сделки в България</h2>
+                <p className="textMostContainer colorText">С повече от <span className="differentColorInsideText"><strong>две десетилетия</strong></span> опит в сферата, правим всичко необходимо за да получите първокласно обслужване!</p>
                 <div className="mostContent">
                     <div className="mostContentText">
-                        <h3 className="colorText">Sell Your Apartment Simple</h3>
+                        <h3 className="colorText">Продай имота си лесно и бързо</h3>
                         <p className="colorText">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis illo sit excepturi, explicabo rerum iure?</p>
                     </div>
-                    <img src="images/networking.jpg" alt="" className="mostContentImage"/>
+                    <img src="images/networking.jpg" alt="продажба снимка" className="mostContentImage"/>
                 </div>
             </div>
             <Map properties={propertiesList}/>

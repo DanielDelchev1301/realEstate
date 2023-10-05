@@ -7,7 +7,7 @@ import './FiltersAndSort.css';
 import Spinner from '../Spinner/Spinner';
 import { categoriesInfo, conditionOptions } from '../Admin/adminConstantsAndHelperFunctions';
 
-function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredPropertyList}) {
+function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredPropertyList, toFirstPage}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedSortOption, setSelectedSortOption] = useState(window.sessionStorage.getItem('sortOption'));
     const [hideFilters, setHideFilters] = useState(true);
@@ -17,7 +17,6 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
 
     useEffect(() => {
         handleFilterButton();
-        console.log(initialPropertyList);
     }, [initialPropertyList]);
 
     const handleOpen = (event) => {
@@ -28,11 +27,9 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
         setAnchorEl(null);
     };
 
-    const handleSort = (event, isInitial, filteredList) => {
+    const handleSort = (text, filteredList) => {
         setOpenSpinner(true);
         setAnchorEl(null);
-        let text = '';
-        isInitial ? text = event : text = event.target.innerText;
         switch (text) {
             case SORTING_OPTIONS.PRICE_HIGH_TO_LOW:
                 setSelectedSortOption(SORTING_OPTIONS.PRICE_HIGH_TO_LOW);
@@ -44,15 +41,15 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                 setFilteredPropertyList([...filteredList].sort((a, b) => a.price.numberInBGN - b.price.numberInBGN));
                 window.sessionStorage.setItem('sortOption', SORTING_OPTIONS.PRICE_LOW_TO_HIGH);
                 break;
-            case SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW:
-                setSelectedSortOption(SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW);
-                setFilteredPropertyList([...filteredList].sort((a, b) => b.squareMeters - a.squareMeters));
-                window.sessionStorage.setItem('sortOption', SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW);
-                break;
             case SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH:
                 setSelectedSortOption(SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH);
-                setFilteredPropertyList([...filteredList].sort((a, b) => a.squareMeters - b.squareMeters));
+                setFilteredPropertyList([...filteredList].sort((a, b) => b.squareMeters - a.squareMeters));
                 window.sessionStorage.setItem('sortOption', SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH);
+                break;
+            case SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW:
+                setSelectedSortOption(SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW);
+                setFilteredPropertyList([...filteredList].sort((a, b) => a.squareMeters - b.squareMeters));
+                window.sessionStorage.setItem('sortOption', SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW);
                 break;
             case SORTING_OPTIONS.REMOVE_SORTING:
                 setSelectedSortOption(SORTING_OPTIONS.REMOVE_SORTING);
@@ -113,14 +110,16 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
             });
         }
         setFilteredPropertyList([...filteredList]);
-        handleSort(selectedSortOption, true, filteredList);
+        handleSort(selectedSortOption, filteredList);
+        toFirstPage(0);
         window.sessionStorage.setItem('filters', JSON.stringify(filters));
     };
 
     const handleClearAll = () => {
         setFilters(FILTERS);
         setFilteredPropertyList([...initialPropertyList]);
-        handleSort(selectedSortOption, true, [...initialPropertyList]);
+        handleSort(selectedSortOption, [...initialPropertyList]);
+        toFirstPage(0);
         window.sessionStorage.setItem('filters', JSON.stringify(FILTERS));
     };
 
@@ -130,14 +129,14 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                 <FilterAltIcon className="filterIcon" onClick={() => setHideFilters(!hideFilters)}/>
                 <div className={`filtersContent ${hideFilters ? 'hideFilters' : ''}`}>
                     <div className="filterContent">
-                        <Tooltip title="The price filter is in BGN"><h4 className="filterTitle colorText">Price:</h4></Tooltip>
+                        <Tooltip title="Филтъра за цена е в BGN"><h4 className="filterTitle colorText">Цена:</h4></Tooltip>
                         <TextField 
                             value={filters.price.from}
                             onChange={(event) => setFilters({...filters, price: { ...filters.price, from: event.target.value === '' ? '' : Number(event.target.value) }})}
                             id="standard-basic-price-from"
                             type="number"
                             className="inputFieldFilters"
-                            label="From"
+                            label="От"
                             variant="standard"
                         />
                         <TextField 
@@ -146,19 +145,19 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                             id="standard-basic-price-to"
                             type="number"
                             className="inputFieldFilters"
-                            label="To"
+                            label="До"
                             variant="standard"
                         />
                     </div>
                     <div className="filterContent">
-                        <h4 className="filterTitle colorText">Square Meters:</h4>
+                        <h4 className="filterTitle colorText">Квадратура:</h4>
                         <TextField
                             value={filters.squareMeters.from}
                             onChange={(event) => setFilters({...filters, squareMeters: { ...filters.squareMeters, from: event.target.value === '' ? '' : Number(event.target.value) }})}
                             id="standard-basic-sqareMeters-from"
                             type="number"
                             className="inputFieldFilters"
-                            label="From"
+                            label="От"
                             variant="standard"
                         />
                         <TextField 
@@ -167,12 +166,12 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                             id="standard-basic-sqareMeters-to"
                             type="number"
                             className="inputFieldFilters"
-                            label="To"
+                            label="До"
                             variant="standard"
                         />
                     </div>
                     <div className="filterContent">
-                        <h4 className="filterTitle colorText">Rooms:</h4>
+                        <h4 className="filterTitle colorText">Стаи:</h4>
                         <Slider 
                             value={filters.rooms}
                             onChange={(event, newValue) => setFilters({...filters, rooms: newValue})}
@@ -183,7 +182,7 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                         />
                     </div>
                     <div className="filterContent">
-                        <h4 className="filterTitle colorText">Build In:</h4>
+                        <h4 className="filterTitle colorText">Построен през:</h4>
                         <Slider 
                             value={filters.builtIn}
                             onChange={(event, newValue) => setFilters({...filters, builtIn: newValue})}
@@ -194,7 +193,7 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                         />
                     </div>
                     <div className="filterContent">
-                        <h4 className="filterTitle colorText">Categories:</h4>
+                        <h4 className="filterTitle colorText">Категории:</h4>
                         <Select
                             labelId="demo-simple-select-filter-label"
                             id="demo-simple-select-filter"
@@ -219,7 +218,7 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                         </Select>
                     </div>
                     <div className="filterContent">
-                        <h4 className="filterTitle colorText">Condition:</h4>
+                        <h4 className="filterTitle colorText">Състояние:</h4>
                         <Autocomplete 
                             value={filters.condition}
                             onChange={(event, value) => setFilters({...filters, condition: value})}
@@ -230,8 +229,8 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                         />
                     </div>
                     <div className="filtersButtons">
-                        <button onClick={handleFilterButton} className="filtersApplyButton">Apply Filters</button>
-                        <button onClick={handleClearAll} className="filtersClearButton">Clear All</button>
+                        <button onClick={handleFilterButton} className="filtersApplyButton">Филтрирай</button>
+                        <button onClick={handleClearAll} className="filtersClearButton">Изчисти</button>
                     </div>
                 </div>
                 <Spinner open={openSpinner}/>
@@ -247,11 +246,11 @@ function FiltersAndSort({initialPropertyList, filteredPropertyList, setFilteredP
                         'aria-labelledby': 'basic-button',
                     }}
                 >
-                    <MenuItem className={SORTING_OPTIONS.PRICE_HIGH_TO_LOW === selectedSortOption ? 'selectedMenuItem' : ''} onClick={(event) => handleSort(event, false, filteredPropertyList)}>{SORTING_OPTIONS.PRICE_HIGH_TO_LOW}</MenuItem>
-                    <MenuItem className={SORTING_OPTIONS.PRICE_LOW_TO_HIGH === selectedSortOption ? 'selectedMenuItem' : ''} onClick={(event) => handleSort(event, false, filteredPropertyList)}>{SORTING_OPTIONS.PRICE_LOW_TO_HIGH}</MenuItem>
-                    <MenuItem className={SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW === selectedSortOption ? 'selectedMenuItem' : ''} onClick={(event) => handleSort(event, false, filteredPropertyList)}>{SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW}</MenuItem>
-                    <MenuItem className={SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH === selectedSortOption ? 'selectedMenuItem' : ''} onClick={(event) => handleSort(event, false, filteredPropertyList)}>{SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH}</MenuItem>
-                    <MenuItem className={SORTING_OPTIONS.REMOVE_SORTING === selectedSortOption ? 'selectedMenuItem' : ''} onClick={(event) => handleSort(event, false, filteredPropertyList)}>{SORTING_OPTIONS.REMOVE_SORTING}</MenuItem>
+                    <MenuItem className={SORTING_OPTIONS.PRICE_HIGH_TO_LOW === selectedSortOption ? 'selectedMenuItem' : ''} onClick={() => handleSort(SORTING_OPTIONS.PRICE_HIGH_TO_LOW, filteredPropertyList)}>{SORTING_OPTIONS.PRICE_HIGH_TO_LOW}</MenuItem>
+                    <MenuItem className={SORTING_OPTIONS.PRICE_LOW_TO_HIGH === selectedSortOption ? 'selectedMenuItem' : ''} onClick={() => handleSort(SORTING_OPTIONS.PRICE_LOW_TO_HIGH, filteredPropertyList)}>{SORTING_OPTIONS.PRICE_LOW_TO_HIGH}</MenuItem>
+                    <MenuItem className={SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW === selectedSortOption ? 'selectedMenuItem' : ''} onClick={() => handleSort(SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW, filteredPropertyList)}>{SORTING_OPTIONS.SQUARE_METERS_HIGH_TO_LOW}</MenuItem>
+                    <MenuItem className={SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH === selectedSortOption ? 'selectedMenuItem' : ''} onClick={() => handleSort(SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH, filteredPropertyList)}>{SORTING_OPTIONS.SQUARE_METERS_LOW_TO_HIGH}</MenuItem>
+                    <MenuItem className={SORTING_OPTIONS.REMOVE_SORTING === selectedSortOption ? 'selectedMenuItem' : ''} onClick={() => handleSort(SORTING_OPTIONS.REMOVE_SORTING, filteredPropertyList)}>{SORTING_OPTIONS.REMOVE_SORTING}</MenuItem>
                 </Menu>
             </div>
         </div>

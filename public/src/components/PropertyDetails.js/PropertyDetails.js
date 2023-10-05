@@ -19,6 +19,7 @@ import Spinner from '../Spinner/Spinner';
 import { observer } from '../../constants/helperFunctions';
 import { conditionOptions } from '../Admin/adminConstantsAndHelperFunctions';
 import ImagesCloseView from '../ImagesCloseView/ImagesCloseView';
+import { useNavigate } from 'react-router-dom';
 
 function PropertyDetails() {
     const isAdmin = JSON.parse(window.localStorage.getItem('user'));
@@ -38,6 +39,8 @@ function PropertyDetails() {
     });
     const [openSpinner, setOpenSpinner] = useState(false);
     const [openImagesCloseView, setOpenImagesCloseView] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const cardsForIntersection = document.querySelectorAll('.exploreCard');
@@ -117,7 +120,7 @@ function PropertyDetails() {
         try {
             await deleteProperty(property._id);
             setOpenSpinner(false);
-            window.location.replace(`/`);
+            navigate(`/`);
         } catch (error) {
             console.error(error);
             setOpenSpinner(false);
@@ -126,7 +129,7 @@ function PropertyDetails() {
 
     return (
         <div className="mainDetailsContainer">
-            <h1 className="detailsTitle colorText">Check More Detailed Info About This Property</h1>
+            <h1 className="detailsTitle colorText">Виж По-Детайлна Информация За Имота</h1>
             <Spinner open={openSpinner}/>
             <ImagesCloseView open={openImagesCloseView} images={property && property.images} setOpenImagesCloseView={setOpenImagesCloseView}/>
             <div className="detailsContainer">
@@ -136,7 +139,7 @@ function PropertyDetails() {
                     navButtonsAlwaysVisible={true}
                 >
                     {property && property.images.map(image => (
-                        <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="propertyImage" onClick={() => setOpenImagesCloseView(true)}/>
+                        <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="снимки на имота" className="propertyImage" onClick={() => setOpenImagesCloseView(true)}/>
                     ))}
                 </Carousel>
                 <div className="detailsInfo">
@@ -145,8 +148,8 @@ function PropertyDetails() {
                             <p key={category + '&&&' + index} className="detailsCategory">{category}</p>
                         ))}
                         <p className="detailsType">{property && property.type}</p>
-                        <p className="squareMetersDetails colorText"><strong>{property && property.squareMeters}</strong> m²</p>
-                        <p className="squareMetersDetails colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: property && property.price.currency ? "EUR" : "BGN" }).format(property && (property.price.number / property.squareMeters))}</strong>/m²</p>
+                        <p className="squareMetersDetails colorText"><strong>{property && property.squareMeters}</strong> м²</p>
+                        <p className="squareMetersDetails colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: property && property.price.currency ? "EUR" : "BGN" }).format(property && (property.price.number / property.squareMeters))}</strong>/м²</p>
                         {isFavourite
                             ? <FavoriteIcon className="favIconDetails" onClick={() => handleClickFav(false, property._id)}/>
                             : <FavoriteBorderIcon className="favIconDetails" onClick={() => handleClickFav(true, property._id)}/>
@@ -162,7 +165,7 @@ function PropertyDetails() {
                                     </>
                                 }
                             >
-                                Are you sure you want to delete this property?
+                                Сигурни ли сте, че искате да изтриете имота?
                             </Alert>
                     </Collapse>
                     <Collapse in={openAlert.deleted}>
@@ -170,7 +173,7 @@ function PropertyDetails() {
                                 severity="success"
                                 onClose={() => setOpenAlert({...openAlert, deleted: false})}
                             >
-                                Property is deleted successfully!
+                                Имота е изтрит успешно!
                             </Alert>
                     </Collapse>
                     <Collapse in={openAlert.edited}>
@@ -180,7 +183,7 @@ function PropertyDetails() {
                                     <ClearIcon className="adminButton" onClick={() => setOpenAlert({...openAlert, edited: false})}/>
                                 }
                             >
-                                Property is edited successfully!
+                                Имота е редактиран успешно!
                             </Alert>
                     </Collapse>
                     <div className="detailsHeader colorText">
@@ -191,7 +194,7 @@ function PropertyDetails() {
                                     onChange={(event) => handleChange(event.target.value, 'title')}
                                     id="standard-basic-title"
                                     className="inputFieldDetails"
-                                    label="Title"
+                                    label="Заглавие"
                                     variant="standard"
                                 />
                                 <TextField 
@@ -200,13 +203,13 @@ function PropertyDetails() {
                                     id="standard-basic-price"
                                     type="number"
                                     className="inputFieldDetails"
-                                    label="Price"
+                                    label="Цена"
                                     variant="standard"
                                 />
                             </>
                             : <>
                                 <h1>{property && property.title}</h1>
-                                <p>Price: <strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: property && property.price.currency ? "EUR" : "BGN" }).format(property && property.price.number)}</strong></p>
+                                <p>Цена: <strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: property && property.price.currency ? "EUR" : "BGN" }).format(property && property.price.number)}</strong></p>
                             </>
                         }
                         {isAdmin && isAdmin.admin && 
@@ -236,7 +239,7 @@ function PropertyDetails() {
                                         onChange={(event) => handleChange(event.target.value, 'address')}
                                         id="standard-basic-address"
                                         className="inputFieldDetails"
-                                        label="Address"
+                                        label="Адрес"
                                         variant="standard"
                                     />
                                     <TextField 
@@ -244,7 +247,7 @@ function PropertyDetails() {
                                         onChange={(event) => handleChange(event.target.value, 'ownerName')}
                                         id="standard-basic-ownerName"
                                         className="inputFieldDetails"
-                                        label="Owner Name"
+                                        label="Име на собственик"
                                         variant="standard"
                                     />
                                     <TextField 
@@ -253,23 +256,23 @@ function PropertyDetails() {
                                         id="standard-basic-ownerPhoneNumber"
                                         type="number"
                                         className="inputFieldDetails"
-                                        label="Owner Phone Number"
+                                        label="Телефон на собственик"
                                         variant="standard"
                                     />
                                 </>
                                 : <>
-                                    <p className="addressInfo colorText">Address: <strong>{property && property.address.address}</strong></p>
-                                    <p className="ownerNameInfo colorText">Owner Name: <strong>{property && property.ownerName}</strong></p>
-                                    <p className="ownerPhoneInfo colorText">Owner Phone: <strong>{property && property.ownerPhoneNumber}</strong>
+                                    <p className="addressInfo colorText">Адрес: <strong>{property && property.address.address}</strong></p>
+                                    <p className="ownerNameInfo colorText">Име на собственик: <strong>{property && property.ownerName}</strong></p>
+                                    <p className="ownerPhoneInfo colorText">Телефон на собственик: <strong>{property && property.ownerPhoneNumber}</strong>
                                         <a href={`tel:${property && property.ownerPhoneNumber}`}>
-                                            <CallIcon />
+                                            <CallIcon className="callUsIcon"/>
                                         </a>
                                     </p>
                                 </>
                             }
                         </div>
                     }
-                    <p className="howManyTimePropertyHaveBeenSeen colorText">Seen <strong>{property && property.seen}</strong> times</p>
+                    <p className="howManyTimePropertyHaveBeenSeen colorText">Видяна <strong>{property && property.seen}</strong> пъти</p>
                     {isAdmin && isAdmin.admin && editMode
                         ?   <Autocomplete
                             value={propertyForEdit.condition}
@@ -279,7 +282,7 @@ function PropertyDetails() {
                             className="categoriesSelectFilter"
                             renderInput={(params) => <TextField {...params} variant="outlined" />}
                         />
-                        :   <p className={`propertyCondition ${property && property.condition === 'Already Built' ? 'conditionGreen' : 'conditionOrange'} colorText`}>Condition: <strong>{property && property.condition}</strong></p>
+                        :   <p className={`propertyCondition ${property && property.condition === 'Завършен' ? 'conditionGreen' : 'conditionOrange'} colorText`}>Състояние: <strong>{property && property.condition}</strong></p>
                     }
                     <div className="detailsMainInfo">
                         <div className="detailsRows">
@@ -304,7 +307,7 @@ function PropertyDetails() {
                                         onChange={(event) => handleChange(event.target.value, 'description')}
                                         id="standard-basic-description"
                                         className="inputFieldDetailsDescription"
-                                        label="Description"
+                                        label="Описаание"
                                         variant="standard"
                                         multiline
                                         maxRows={10}
@@ -320,8 +323,8 @@ function PropertyDetails() {
                         </div>
                     </div>
                     <a href="tel:0894443846" className="forMoreInformation">
-                        <button>Call Us
-                                <CallIcon />
+                        <button>Обади ни се
+                                <CallIcon className="callUsIcon"/>
                         </button>
                     </a>
                     {property && 
@@ -329,7 +332,7 @@ function PropertyDetails() {
                     }
                 </div>
             </div>
-            <h2 className="homeExploreTitleDetails colorText">More Similar Offers</h2>
+            <h2 className="homeExploreTitleDetails colorText">Подобни Оферти</h2>
             <div className="exploreCardsInDetails">
                 {propertiesList.length && property && propertiesList
                     .filter(_property => _property.categories.some(category => property.categories.includes(category)))

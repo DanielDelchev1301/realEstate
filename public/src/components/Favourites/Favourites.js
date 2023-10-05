@@ -50,13 +50,13 @@ function Favourites() {
     return (
         <div className="favouritesMainContainer">
             <div className="landscapeImageContainer">
-                <img src="images/urbanDarken.png" alt="" className="landscapeImage" />
+                <img src="images/urbanDarken.png" alt="Любими лого" className="landscapeImage" />
                 <div className="favouritesFlexContainer">
-                    <h2 className="favouritesLandscapeTitle">Search Through Your Favourite Properties</h2>
+                    <h2 className="favouritesLandscapeTitle">Следи изкъсо имотите, които представляват интерес за теб</h2>
                 </div>
             </div>
             <div className="favouritesContainer">
-                <h3 className="favouritesTitle colorText">Favourites</h3>
+                <h3 className="favouritesTitle colorText">Любими:</h3>
                 <Spinner open={openSpinner}/>
                 {favouritesList.length 
                     ?   <div className="favouriteCards">
@@ -64,7 +64,7 @@ function Favourites() {
                                 <Card key={property._id} propertyInfo={property} favourites={favourites} setFavourites={setFavourites} />
                             )}
                         </div>
-                    :   <p className="favouritesEmpty colorText">You don't have any favourites yet.</p>
+                    :   <p className="favouritesEmpty colorText">Все още нямаш имоти в <span className="differentColorInsideText"><strong>любими</strong></span>.</p>
                 }
             </div>
         </div>

@@ -58,35 +58,37 @@ export const appendPropertyInfo = (formData, propertyInfo) => {
 };
 
 export const categoriesInfo = [
-    'Exclusive offer',
-    'House',
-    'Floor of a house',
-    'Land',
-    'Apartment',
-    'One room apartment',
-    'Two room apartment',
-    'Three room apartment',
-    'Multiple room apartment',
-    'Studio',
-    'Maisonette',
-    'Office',
-    'Garage',
-    'Other',
+    'Ексклузивна оферта',
+    'Къща',
+    'Етаж от къща',
+    'Парцел',
+    'Апартамент',
+    'Едностаен апартамент',
+    'Двустаен апартамент',
+    'Тристаен апартамент',
+    'Многостаен апартамент',
+    'Студио',
+    'Мезонет',
+    'Офис',
+    'Гараж',
+    'Друго',
 ];
 
 export const typeOptions = [
-    'Rent',
-    'Sale'
+    'Под наем',
+    'Продажба'
 ];
 
 export const conditionOptions = [
-    'Already Built',
-    'In Construction'
+    'Завършен',
+    'В строеж',
 ];
 
 export const typeMaterial = [
-    'Bricks',
-    'Panel',
-    'Reinforced Concrete',
-    'Other'
+    'Тухла',
+    'Монолит',
+    'Панел',
+    'ЕПК',
+    'Гредоред',
+    'Друго'
 ];

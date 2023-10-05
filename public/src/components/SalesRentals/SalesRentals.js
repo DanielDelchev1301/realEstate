@@ -52,22 +52,25 @@ function SalesRentals({type}) {
     };
 
     const handlePageClick = (event) => {
-        const newOffset = event.selected * itemsPerPage % filteredPropertyList.length;
+        const value = event ? event.selected : event;
+        const newOffset = value * itemsPerPage % filteredPropertyList.length;
         setItemOffset(newOffset);
     }
 
     return (
         <div className="salesMainContainer">
+            <title>Намери Идеалния за Теб Имот</title>
             <div className="landscapeImageContainer">
-                <img src="images/urbanDarken.png" alt="" className="landscapeImage" />
+                <img src="images/urbanDarken.png" alt="Продажби/Наеми Лого" className="landscapeImage" />
                 <div className="favouritesFlexContainer">
-                    <h2 className="favouritesLandscapeTitle">Find Your Dream Property</h2>
+                    <h2 className="favouritesLandscapeTitle">Намери мечтания си дом</h2>
                 </div>
             </div>
             <FiltersAndSort
                 initialPropertyList={initialPropertyList}
                 filteredPropertyList={filteredPropertyList}
                 setFilteredPropertyList={setFilteredPropertyList}
+                toFirstPage={handlePageClick}
             />
             <Spinner open={openSpinner}/>
             <div className="exploreCardsSales">
@@ -86,7 +89,7 @@ function SalesRentals({type}) {
                             containerClassName='paginationContainer'
                             breakClassName='pageItem'
                         />
-                    :   <h3 className="noResults colorText">Sorry no results found, please try again with different filters.</h3>
+                    :   <h3 className="noResults colorText">Съжалявам но не открихме имоти, моля опитайте с други филтри.</h3>
                 }
             </div>
             <div className="moreOffers">
@@ -94,7 +97,7 @@ function SalesRentals({type}) {
                 <Carousel className="carouselBoxSales" interval={3000}>
                     {initialPropertyList.map(property =>
                         <>
-                            <img src={`http://localhost:5000/${property.images[0].destination}${property.images[0].filename}`} alt="" className="propertyImageSales" />
+                            <img src={`http://localhost:5000/${property.images[0].destination}${property.images[0].filename}`} alt="Снимка на имота" className="propertyImageSales" />
                             <Link to={`/properties/details/${property._id}`} className="linkToInCarousel">
                                 <div className="carouselImageInfoBox">
                                         <h2 className="carouselImageTitle">{property.title}</h2>

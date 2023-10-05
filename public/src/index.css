@@ -18,6 +18,10 @@ body {
     color: #444343;
 }
 
+.differentColorInsideText {
+    color: rgb(43, 211, 211);
+}
+
 .carouselBox .MuiIconButton-root,
 .exploreCardCarousel .MuiIconButton-root,
 .wideCardCarousel .MuiIconButton-root,

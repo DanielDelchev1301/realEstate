@@ -22,7 +22,7 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
         <div className="exploreCard">
             <Carousel className="exploreCardCarousel" interval={10000} navButtonsAlwaysVisible={true}>
                 {propertyInfo && propertyInfo.images.map(image => (
-                    <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="" className="exploreCardImage" />
+                    <img src={`http://localhost:5000/${image.destination}${image.filename}`} alt="Снимка на имота" className="exploreCardImage" />
                 ))}
             </Carousel>
             <div className="exploreCardInfo">
@@ -38,14 +38,14 @@ function Card({propertyInfo, favourites = {}, setFavourites, rerender}) {
                         <p key={category + '&&&' + index} className="wideCardCategory">{category}</p>
                     ))}
                     <p className="typeCardWideCard">{propertyInfo && propertyInfo.type}</p>
-                    <p className="squareMetersCard colorText"><strong>{propertyInfo.squareMeters}</strong> m²</p>
-                    <p className="squareMetersCard colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number / propertyInfo.squareMeters)}</strong>/m²</p>
+                    <p className="squareMetersCard colorText"><strong>{propertyInfo.squareMeters}</strong> м²</p>
+                    <p className="squareMetersCard colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number / propertyInfo.squareMeters)}</strong>/м²</p>
                 </div>
                 <div>
                     {/* <p className="exploreCardDescription colorText">{getDescription(propertyInfo.description)}</p> */}
                     <p className="exploreCardPrice colorText"><strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: propertyInfo.price.currency ? "EUR" : "BGN" }).format(propertyInfo.price.number)}</strong></p>
                     <Link to={`/properties/details/${propertyInfo._id}`} className="exploreCardButtonContainer">
-                        <button className="exploreCardButton" onClick={() => rerender && rerender()}>Details</button>
+                        <button className="exploreCardButton" onClick={() => rerender && rerender()}>Детайли</button>
                     </Link>
                 </div>
             </div>

@@ -42,14 +42,14 @@ function Admin() {
                                     severity="error"
                                     onClose={() => setOpen(false)}
                                 >
-                                    Wrong Username or Password!
+                                    Невалидно потребителско име или парола!
                                 </Alert>
                             </Collapse>
                             <div className="inputRow">
                                 <AccountBoxIcon className="inputIcon"/>
                                 <TextField
                                     id="standard-basic-username"
-                                    label="Username"
+                                    label="Потребителско име"
                                     variant="standard"
                                     className="inputField"
                                     color="warning"
@@ -61,7 +61,7 @@ function Admin() {
                                 <LockIcon className="inputIcon"/>
                                 <TextField
                                     id="standard-basic-password"
-                                    label="Password"
+                                    label="Парола"
                                     variant="standard"
                                     type="password"
                                     className="inputField"
@@ -70,7 +70,7 @@ function Admin() {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
-                            <button className="loginButton" onClick={handleLoginButton}>Login</button>
+                            <button className="loginButton" onClick={handleLoginButton}>Логин</button>
                         </div>
                     </div>
                 }

@@ -55,7 +55,7 @@ function FreeEvaluation() {
 
     const handleSendMail = async () => {
         setOpenSpinner(true);
-        let message = `Name: ${freeEvaluationInfo.name}\nEmail: ${freeEvaluationInfo.email}\nPhone: ${freeEvaluationInfo.phone}\nAddress: ${freeEvaluationInfo.address}\nSquare Meters: ${freeEvaluationInfo.squareMeters}\nType: ${freeEvaluationInfo.type}\nMaterial: ${freeEvaluationInfo.material}\nFurniture: ${freeEvaluationInfo.furniture}\nGarage: ${freeEvaluationInfo.garage}\nYard: ${freeEvaluationInfo.yard}\nMessage: ${freeEvaluationInfo.message}`; 
+        let message = `Име: ${freeEvaluationInfo.name}\nИмейл: ${freeEvaluationInfo.email}\nТелефон: ${freeEvaluationInfo.phone}\nАдрес: ${freeEvaluationInfo.address}\nКвадратура: ${freeEvaluationInfo.squareMeters}\nТип: ${freeEvaluationInfo.type}\nМатериал: ${freeEvaluationInfo.material}\nОбзавеждане: ${freeEvaluationInfo.furniture}\nГараж: ${freeEvaluationInfo.garage}\nДвор: ${freeEvaluationInfo.yard}\nСъобщение: ${freeEvaluationInfo.message}`; 
         try {
             await sendMail({name: freeEvaluationInfo.name, email: freeEvaluationInfo.email, message: message});
             setFreeEvaluationInfo(defaultFreeEvaluationInfo);
@@ -78,7 +78,7 @@ function FreeEvaluation() {
         }
         setEmailError({
             error: true,
-            helperText: 'Enter valid email address (e.g. example@gmail.com)'
+            helperText: 'Въведи валиден имейл адрес, пример: (example@gmail.com)!'
         });
         return null;
     };
@@ -100,6 +100,7 @@ function FreeEvaluation() {
 
     return(
         <div className="freeEvaluationMainContainer">
+            <title>БЕЗПЛАТНА Оценка на Твоя Имот, Само ни Пиши</title>
             <div className="freeEvaluationContainer">
                 <div className="freeEvaluationContent">
                     <div className="freeEvaluationForm">
@@ -108,16 +109,16 @@ function FreeEvaluation() {
                                 severity="success"
                                 onClose={() => setOpen(false)}
                             >
-                                Your message was sent successfully!
+                                Съобщението е изпратено успешно!
                             </Alert>
                         </Collapse>
-                        <h2 className="freeEvaluationTitle">Write Us For Free Evaluation</h2>
+                        <h2 className="freeEvaluationTitle">Пиши ни за да получиш безплатна оценка</h2>
                         <Spinner open={openSpinner}/>
                         <div className="inputRow freeEvaluationInputRow">
                             <AlternateEmailIcon className="inputIcon freeEvaluationInputIcon"/>
                             <TextField
                                 id="standard-basic-email-evaluation"
-                                label="Email"
+                                label="Имейл"
                                 required
                                 variant="standard"
                                 className="inputFieldFreeEvaluation"
@@ -131,7 +132,7 @@ function FreeEvaluation() {
                             <AccountBoxIcon className="inputIcon freeEvaluationInputIcon"/>
                             <TextField
                                 id="standard-basic-name-evaluation"
-                                label="Name"
+                                label="Име"
                                 required
                                 variant="standard"
                                 className="inputFieldFreeEvaluation"
@@ -143,7 +144,7 @@ function FreeEvaluation() {
                             <PhoneIphoneIcon className="inputIcon freeEvaluationInputIcon"/>
                             <TextField
                                 id="standard-basic-phone-evaluation"
-                                type="number"
+                                type="Телефонен номер"
                                 required
                                 label="Phone"
                                 variant="standard"
@@ -156,7 +157,7 @@ function FreeEvaluation() {
                             <BusinessIcon className="inputIcon freeEvaluationInputIcon"/>
                             <TextField
                                 id="standard-basic-address-evaluation"
-                                label="Address"
+                                label="Адрес"
                                 required
                                 variant="standard"
                                 className="inputFieldFreeEvaluation"
@@ -170,7 +171,7 @@ function FreeEvaluation() {
                                 id="standard-basic-squareMeters-evaluation"
                                 type="number"
                                 required
-                                label="Square Meters"
+                                label="Квадратура"
                                 variant="standard"
                                 className="inputFieldFreeEvaluation"
                                 value={freeEvaluationInfo.squareMeters}
@@ -185,7 +186,7 @@ function FreeEvaluation() {
                                 options={categoriesInfo.slice(1)}
                                 getOptionLabel={(option) => option}
                                 className="inputFieldFreeEvaluation"
-                                renderInput={(params) => <TextField {...params} label="Property Type" required variant="outlined" />}
+                                renderInput={(params) => <TextField {...params} label="Тип на имота" required variant="outlined" />}
                             />
                         </div>
                         <div className="inputRow freeEvaluationInputRow">
@@ -196,13 +197,13 @@ function FreeEvaluation() {
                                 options={typeMaterial}
                                 getOptionLabel={(option) => option}
                                 className="inputFieldFreeEvaluation"
-                                renderInput={(params) => <TextField {...params} label="Property Material" required variant="outlined" />}
+                                renderInput={(params) => <TextField {...params} label="Материал" required variant="outlined" />}
                             />
                         </div>
                         <div className="inputRow freeEvaluationInputRow radioButtonsRow">
                             <div className="radioButtonsTitle">
                                 <ChairIcon className="inputIcon freeEvaluationInputIcon"/>
-                                <p><bold>Furniture</bold></p>
+                                <p><bold>Обазвеждане</bold></p>
                             </div>
                             <RadioGroup
                                 aria-labelledby="demo-controlled-radio-buttons-group"
@@ -210,15 +211,15 @@ function FreeEvaluation() {
                                 value={freeEvaluationInfo.furniture}
                                 onChange={(event, value) => handleChange(value, 'furniture')}
                             >
-                                <FormControlLabel value="Furnished" control={<Radio />} label="Furnished"/>
-                                <FormControlLabel value="Unfurnished" control={<Radio />} label="Unfurnished"/>
-                                <FormControlLabel value="Semi-furnished" control={<Radio />} label="Semi-furnished"/>
+                                <FormControlLabel value="Обзаведен" control={<Radio />} label="Обзаведен"/>
+                                <FormControlLabel value="Необзаведен" control={<Radio />} label="Необзаведен"/>
+                                <FormControlLabel value="Полуобзаведен" control={<Radio />} label="Полуобзаведен"/>
                             </RadioGroup>
                         </div>
                         <div className="inputRow freeEvaluationInputRow radioButtonsRow">
                             <div className="radioButtonsTitle">
                                 <WarehouseIcon className="inputIcon freeEvaluationInputIcon"/>
-                                <p><bold>Garage</bold></p>
+                                <p><bold>Гараж</bold></p>
                             </div>
                             <RadioGroup
                                 aria-labelledby="demo-controlled-radio-buttons-group"
@@ -226,14 +227,14 @@ function FreeEvaluation() {
                                 value={freeEvaluationInfo.garage}
                                 onChange={(event, value) => handleChange(value, 'garage')}
                             >
-                                <FormControlLabel value="Yes" control={<Radio />} label="Yes"/>
-                                <FormControlLabel value="No" control={<Radio />} label="No"/>
+                                <FormControlLabel value="Да" control={<Radio />} label="Да"/>
+                                <FormControlLabel value="Не" control={<Radio />} label="Не"/>
                             </RadioGroup>
                         </div>
                         <div className="inputRow freeEvaluationInputRow radioButtonsRow">
                             <div className="radioButtonsTitle">
                                 <GrassIcon className="inputIcon freeEvaluationInputIcon"/>
-                                <p><bold>Yard</bold></p>
+                                <p><bold>Двор</bold></p>
                             </div>
                             <RadioGroup
                                 aria-labelledby="demo-controlled-radio-buttons-group"
@@ -241,15 +242,15 @@ function FreeEvaluation() {
                                 value={freeEvaluationInfo.yard}
                                 onChange={(event, value) => handleChange(value, 'yard')}
                             >
-                                <FormControlLabel value="Yes" control={<Radio />} label="Yes"/>
-                                <FormControlLabel value="No" control={<Radio />} label="No"/>
+                                <FormControlLabel value="Да" control={<Radio />} label="Да"/>
+                                <FormControlLabel value="Не" control={<Radio />} label="Не"/>
                             </RadioGroup>
                         </div>
                         <div className="inputRow freeEvaluationInputRow">
                             <CommentIcon className="inputIcon freeEvaluationInputIcon"/>
                             <TextField
                                 id="standard-basic-message-evaluation"
-                                label="Message"
+                                label="Съобщение"
                                 variant="standard"
                                 className="inputFieldFreeEvaluation"
                                 multiline
@@ -263,7 +264,7 @@ function FreeEvaluation() {
                             disabled={isButtonDisabled()}
                             onClick={handleSendMail}
                         >
-                            Submit
+                            Изпрати
                         </button>
                     </div>
 

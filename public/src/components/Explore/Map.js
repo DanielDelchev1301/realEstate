@@ -26,7 +26,7 @@ function Map({properties}) {
 
     return(
         <div className="mapContainer">
-            <h1 className="mapTitle colorText">Find Us On The Map</h1>
+            <h1 className="mapTitle colorText">Намери ни на картата</h1>
             <div className="googleMap">
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY, libraries: ['places']}}
@@ -40,7 +40,7 @@ function Map({properties}) {
                         onClick={() => console.log('Office building')}
                     >
                         <FmdGoodIcon className="pinIcon" color="primary"/>
-                        <p className="pinText">Office</p>
+                        <p className="pinText">Офис</p>
                     </div>
                     {isAdmin && isAdmin.admin && properties && properties.map(property => (
                         <div className="pin"
@@ -51,11 +51,11 @@ function Map({properties}) {
                         >
                             {previewCardVisible[property._id] &&
                                 <div className="previewCard">
-                                    <img src={`http://localhost:5000/${property.images[0].destination}${property.images[0].filename}`} alt="" className="previewImageCard" />
+                                    <img src={`http://localhost:5000/${property.images[0].destination}${property.images[0].filename}`} alt="снимка на имота" className="previewImageCard" />
                                     <div className="previewCardContent">
                                         <h3 className="previewCardTitle colorText">{property.title}</h3>
                                         <Link to={`/properties/details/${property._id}`} className="previewCardButtonContainer">
-                                            <button className="previewCardButton">View More</button>
+                                            <button className="previewCardButton">Виж повече</button>
                                         </Link>
                                     </div>
                                 </div>

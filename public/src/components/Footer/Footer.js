@@ -10,8 +10,8 @@ function Footer() {
     return (
         <div className="footerContainer">
             <div className="mainInfo">
-                <h2 className="footerTitle colorText">Real Estate Company</h2>
-                <img src="images/logo1.png" alt="" className="footerLogo"/>
+                <h2 className="footerTitle colorText">Недвижими Имоти</h2>
+                <img src="images/logo1.png" alt="Лого" className="footerLogo"/>
             </div>
             <div className="aboutUsAndIcons">
                 <FacebookIcon className="socialMediaIcons"/>
