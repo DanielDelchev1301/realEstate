@@ -4,18 +4,24 @@ const router = express.Router();
 import { adminController } from './controllers/adminController.js';
 import { propertiesController } from './controllers/propertiesController.js';
 
-router.get("/*", function(req, res, next) {
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+router.get("/*", function(req, res, next) {  
   if(!req.isSpider() ) {
       next();
       return;
   }
-
-  let path = new URL(req.originalUrl).pathname;
+  
+  let path = req.query.path;
   
   if(path = "/") {
     path = "/index";
   }
-  res.sendFile(`./cache/${path}.html`);
+  res.sendFile(`${__dirname}/cache/${path}.html`);
 });
 
 router.use('/admin', adminController);

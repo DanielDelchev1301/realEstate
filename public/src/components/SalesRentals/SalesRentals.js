@@ -41,8 +41,9 @@ function SalesRentals({type}) {
 
     const fetch = async () => {
         setOpenSpinner(true);
+        const path = window.location.pathname;
         try {
-            const properties = await getAllPropertiesByType(type);
+            const properties = await getAllPropertiesByType(type, path);
             setInitialPropertyList(properties.data);
             setFilteredPropertyList(properties.data);
             setOpenSpinner(false);

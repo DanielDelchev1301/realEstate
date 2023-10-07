@@ -38,8 +38,9 @@ function ReachUs() {
     }, []);
 
     const fetch = async () => {
+        const path = window.location.pathname;
         try {
-            const properties = await getAllProperties();
+            const properties = await getAllProperties(path);
             setPropertiesList(properties.data);
             window.scrollTo({top: 100, behavior: 'smooth'});
         } catch (error) {

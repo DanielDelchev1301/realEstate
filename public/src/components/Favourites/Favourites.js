@@ -36,8 +36,9 @@ function Favourites() {
 
         if (favList.length) {
             setOpenSpinner(true);
+            const path = window.location.pathname;
             try {
-                const properties = await getPropertiesById(favList);
+                const properties = await getPropertiesById(favList, path);
                 setFavouritesList(properties.data);
                 setOpenSpinner(false);
             } catch (error) {

@@ -32,8 +32,9 @@ function Home() {
 
     const fetch = async () => {
         setOpenSpinner(true);
+        const path = window.location.pathname;
         try {
-            const properties = await getAllProperties();
+            const properties = await getAllProperties(path);
             setPropertiesList(properties.data);
             setOpenSpinner(false);
             window.scrollTo({top: 0, behavior: 'smooth'});
