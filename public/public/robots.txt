@@ -1,4 +1,4 @@
-# https://realestatebulgaria.onrender.com/robotstxt.html
+# https://realestatebulgaria.onrender.com/sitemap.xml
 User-agent: *
 Disallow: /admin
 Allow: /
