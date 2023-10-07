@@ -33,7 +33,7 @@ router.post('/sendMail', async(req, res) => {
         
         useSendmail({
             from: email,
-            to: 'ddelchev@astea.net',
+            to: 'danieldelchev@icloud.com',
             subject: name,
             text: message,
         }, (err, reply) => {
