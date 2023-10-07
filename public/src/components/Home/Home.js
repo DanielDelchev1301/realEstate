@@ -8,6 +8,7 @@ import { CATEGORIES_OBJECT } from '../../constants/constants';
 import Spinner from '../Spinner/Spinner';
 import { observer, observerDescriptions, observerTitles } from '../../constants/helperFunctions';
 import { typeOptions } from '../Admin/adminConstantsAndHelperFunctions';
+import { Helmet } from 'react-helmet-async';
 
 function Home() {
     const [propertiesList, setPropertiesList] = useState([]);
@@ -44,7 +45,11 @@ function Home() {
 
     return (
         <div className="homeContainer">
-            <title>Евтини и Луксозни Имоти Под Наем и За Продан</title>
+            <Helmet>
+                <title>Евтини, Надеждни и Луксозни Имоти Под Наем и За Продан</title>
+                <meta name="description" content="Избери Бързо и Лесно Имот от Богата Гама на Достъпни Цени" />
+                <link rel="canonical" href="/"/>
+            </Helmet>
             <div className="landscapeImageContainer">
                 <img src="images/landscape.png" alt="недвижими имоти снимка" className="landscapeImage" />
                 <div className="homeFlexContainer">

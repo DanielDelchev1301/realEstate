@@ -8,6 +8,7 @@ import Spinner from '../Spinner/Spinner';
 import Carousel from 'react-material-ui-carousel';
 import { Link } from 'react-router-dom';
 import { observer } from '../../constants/helperFunctions';
+import { Helmet } from 'react-helmet-async';
 
 function SalesRentals({type}) {
     const [initialPropertyList, setInitialPropertyList] = useState([]);
@@ -59,7 +60,10 @@ function SalesRentals({type}) {
 
     return (
         <div className="salesMainContainer">
-            <title>Намери Идеалния за Теб Имот</title>
+            <Helmet>
+                <title>Намери Идеалния за Теб Имот</title>
+                <meta name="description" content="Избери Бързо и Лесно Имот от Богата Гама на Достъпни Цени Като се Възползваш от Нашите Разнообразни Филтри и Сортиране" />
+            </Helmet>
             <div className="landscapeImageContainer">
                 <img src="images/urbanDarken.png" alt="Продажби/Наеми Лого" className="landscapeImage" />
                 <div className="favouritesFlexContainer">

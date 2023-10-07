@@ -19,6 +19,7 @@ import Spinner from '../Spinner/Spinner';
 import { sendMail } from '../../service/adminService';
 import { categoriesInfo, typeMaterial } from '../Admin/adminConstantsAndHelperFunctions';
 import { defaultFreeEvaluationInfo } from '../../constants/constants';
+import { Helmet } from 'react-helmet-async';
 
 function FreeEvaluation() {
     const [propertiesList, setPropertiesList] = useState([]);
@@ -100,7 +101,11 @@ function FreeEvaluation() {
 
     return(
         <div className="freeEvaluationMainContainer">
-            <title>БЕЗПЛАТНА Оценка на Твоя Имот, Само ни Пиши</title>
+            <Helmet>
+                <title>БЕЗПЛАТНА Оценка на Твоя Имот, Само ни Пиши</title>
+                <meta name="description" content="Не се Колебай, Свържи с Нас и ще Направим Безплатна Оценка на Имота ти без да се Налага да Идваш до Офиса" />
+                <link rel="canonical" href="/freeEvaluation"/>
+            </Helmet>
             <div className="freeEvaluationContainer">
                 <div className="freeEvaluationContent">
                     <div className="freeEvaluationForm">

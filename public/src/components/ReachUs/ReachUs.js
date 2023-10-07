@@ -10,6 +10,7 @@ import { sendMail } from "../../service/adminService";
 import Badge from "../Badge/Badge";
 import Spinner from '../Spinner/Spinner';
 import { observer, observerBadge } from '../../constants/helperFunctions';
+import { Helmet } from 'react-helmet-async';
 
 function ReachUs() {
     const [propertiesList, setPropertiesList] = useState([]);
@@ -83,7 +84,11 @@ function ReachUs() {
 
     return (
         <div className="reachUsMainContainer">
-            <title>Ще Ви Помогнем да Изберете Най-Добрия Имот за Вас</title>
+            <Helmet>
+                <title>Ще Ви Помогнем да Изберете Най-Добрия Имот за Вас</title>
+                <meta name="description" content="При Всякакви Въпроси не се Колебайте да се Свържете с Нас, Ще Отделим Време да Ви Помогнем с Всичко Необходимо" />
+                <link rel="canonical" href="/reachUs"/>
+            </Helmet>
             <div className="reachUsContainer">
                 <div className="reachUsContent">
                     <div className="reachUsForm">

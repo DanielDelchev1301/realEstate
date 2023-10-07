@@ -4,6 +4,7 @@ import { getPropertiesById } from '../../service/propertyService';
 import Card from '../Card/Card';
 import Spinner from '../Spinner/Spinner';
 import { observer } from '../../constants/helperFunctions';
+import { Helmet } from 'react-helmet-async';
 
 function Favourites() {
     const [favourites, setFavourites] = useState(JSON.parse(window.localStorage.getItem('favourites')) || {});
@@ -49,6 +50,11 @@ function Favourites() {
     };
     return (
         <div className="favouritesMainContainer">
+            <Helmet>
+                <title>Любимите ти Имоти</title>
+                <meta name="description" content="Не Изпускай Любимите си Имоти от Поглед Като ги Запазиш в Нашата Галерия от 'Любими' Така ще си Винаги Крачка Напред" />
+                <link rel="canonical" href="/favourites"/>
+            </Helmet>
             <div className="landscapeImageContainer">
                 <img src="images/urbanDarken.png" alt="Любими лого" className="landscapeImage" />
                 <div className="favouritesFlexContainer">
