@@ -26,7 +26,7 @@ function Map({properties}) {
 
     return(
         <div className="mapContainer">
-            <h1 className="mapTitle colorText">Намери ни на картата</h1>
+            <h2 className="mapTitle colorText">Намери ни на картата</h2>
             <div className="googleMap">
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY, libraries: ['places']}}

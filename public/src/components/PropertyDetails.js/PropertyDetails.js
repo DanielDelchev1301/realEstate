@@ -208,7 +208,7 @@ function PropertyDetails() {
                                 />
                             </>
                             : <>
-                                <h1>{property && property.title}</h1>
+                                <h2>{property && property.title}</h2>
                                 <p>Цена: <strong>{new Intl.NumberFormat( "bg-BG", { style: "currency", currency: property && property.price.currency ? "EUR" : "BGN" }).format(property && property.price.number)}</strong></p>
                             </>
                         }
