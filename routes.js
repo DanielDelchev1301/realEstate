@@ -4,7 +4,7 @@ const router = express.Router();
 import { adminController } from './controllers/adminController.js';
 import { propertiesController } from './controllers/propertiesController.js';
 
-router.get("*", function(req, res, next) {
+router.get("/*", function(req, res, next) {
     if(!req.isSpider() ) {
         next();
         return;
