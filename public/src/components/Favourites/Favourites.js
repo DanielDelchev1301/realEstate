@@ -53,7 +53,6 @@ function Favourites() {
             <Helmet>
                 <title>Любимите ти Имоти</title>
                 <meta name="description" content="Не Изпускай Любимите си Имоти от Поглед Като ги Запазиш в Нашата Галерия от 'Любими' Така ще си Винаги Крачка Напред" />
-                <link rel="canonical" href="/favourites"/>
             </Helmet>
             <div className="landscapeImageContainer">
                 <img src="images/urbanDarken.png" alt="Любими лого" className="landscapeImage" />

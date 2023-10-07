@@ -48,7 +48,6 @@ function Home() {
             <Helmet>
                 <title>Евтини, Надеждни и Луксозни Имоти Под Наем и За Продан</title>
                 <meta name="description" content="Избери Бързо и Лесно Имот от Богата Гама на Достъпни Цени" />
-                <link rel="canonical" href="/"/>
             </Helmet>
             <div className="landscapeImageContainer">
                 <img src="images/landscape.png" alt="недвижими имоти снимка" className="landscapeImage" />

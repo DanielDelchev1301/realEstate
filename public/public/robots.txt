@@ -1,5 +1,10 @@
 # https://realestatebulgaria.onrender.com/robotstxt.html
 User-agent: *
 Disallow: /admin
-Allow: .js
-Allow: .css
+Allow: /
+Allow: /sales
+Allow: /rentals
+Allow: /favourites
+Allow: /freeEvaluation
+Allow: /reachUs
+

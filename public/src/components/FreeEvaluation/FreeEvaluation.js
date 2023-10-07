@@ -104,7 +104,6 @@ function FreeEvaluation() {
             <Helmet>
                 <title>БЕЗПЛАТНА Оценка на Твоя Имот, Само ни Пиши</title>
                 <meta name="description" content="Не се Колебай, Свържи с Нас и ще Направим Безплатна Оценка на Имота ти без да се Налага да Идваш до Офиса" />
-                <link rel="canonical" href="/freeEvaluation"/>
             </Helmet>
             <div className="freeEvaluationContainer">
                 <div className="freeEvaluationContent">
